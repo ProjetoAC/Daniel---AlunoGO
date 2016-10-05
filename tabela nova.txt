@@ -1,0 +1,5 @@
+create table Logar(
+idlogin SERIAL primary key not null,
+login varchar(20) unique not null default '',
+senha varchar(20) not null default ''
+);
