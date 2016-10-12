@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Model.Aluno;
+import View.TelaPrincipal;
 
 /**
  *
@@ -74,7 +75,7 @@ public class AlunoDao {
                     + "', '" + aluno.getNome_responsavel()
                     + "', '" + aluno.getTelefone_responsavel()
                     + "', '" + aluno.getParentesco_responsavel()
-                    + ")";
+                    + "')";
             st.execute(sql);
             return true;
         } catch (SQLException ex) {

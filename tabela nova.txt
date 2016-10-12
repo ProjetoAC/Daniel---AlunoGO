@@ -5,6 +5,20 @@ senha varchar(20) not null default ''
 );
 
 create table Imagem(
-idimagem SERIAL PRIMARY KEY not null,
+id SERIAL PRIMARY KEY not null,
 binario BYTEA
+);
+
+create table alunos(
+alunoid SERIAL PRIMARY KEY NOT NULL,
+nome VARCHAR(20) NOT NULL DEFAULT '',
+sobrenome VARCHAR(20) NOT NULL DEFAULT '',
+idade INTEGER NOT NULL,
+rua VARCHAR(20) NOT NULL DEFAULT '',
+numero INTEGER NOT NULL,
+bairro VARCHAR(20) NOT NULL DEFAULT '',
+cidade VARCHAR(20) NOT NULL DEFAULT '',
+nome_responsavel VARCHAR(20) NOT NULL DEFAULT '',
+telefone_responsavel VARCHAR(20) NOT NULL DEFAULT '',
+parentesco_responsavel VARCHAR(20) NOT NULL DEFAULT ''
 );

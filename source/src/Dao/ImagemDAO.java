@@ -27,7 +27,7 @@ public class ImagemDAO {
     }
         public Imagem buscar(Integer id) throws SQLException{
         Imagem retorno = null;
-        String sql = "SELECT idimagem ,binario from imagem where id=?";
+        String sql = "SELECT id ,binario from imagem where id=?";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
         
         try {
@@ -36,7 +36,7 @@ public class ImagemDAO {
             if(rs.next())
             {
                 retorno = new Imagem();
-                retorno.setImagemid(rs.getInt("idimagem"));
+                retorno.setImagemid(rs.getInt("id"));
                 retorno.setImagem(rs.getBytes("bianrio"));
             
             }
