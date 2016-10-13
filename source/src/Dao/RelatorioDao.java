@@ -25,7 +25,7 @@ public class RelatorioDao {
         ResultSet rs;
         Relatorio relatorio;
         try {
-            rs = st.executeQuery("SELECT RELATORIOID, ATA " 
+            rs = st.executeQuery("SELECT RELATORIOID, ALUNOID, ATA" 
                     + "FROM RELATORIO WHERE RELATORIOID = " + id);
             while (rs.next()) {
                 relatorio = new Relatorio();
@@ -44,14 +44,15 @@ public class RelatorioDao {
         int id = 0;
         try {
 
-            sql = "SELECT COALESCE(MAX(RELATORIOID)+1, 1) AS RELATORIOID FROM RELATORIO";
+            sql = "SELECT RELATORIOID FROM RELATORIO";
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 id = rs.getInt("RELATORIOID");
             }
             relatorio.setRelatorioid(id);
-            sql = "INSERT INTO relatorio( ralatorioid, ata "
+            sql = "INSERT INTO relatorio(relatorioid, alunoid, ata) "
                     + "VALUES (" + relatorio.getRelatorioid()
+                    +", 1" /*+ relatorio.getAlunoid()*/
                     + ", '" + relatorio.getAta()
                     + "')";
             st.execute(sql);

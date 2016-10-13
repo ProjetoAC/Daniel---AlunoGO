@@ -6,6 +6,15 @@ package Model;
  */
 public class Relatorio {
     private int Relatorioid;
+    private int alunoid;
+
+    public int getAlunoid() {
+        return alunoid;
+    }
+
+    public void setAlunoid(int alunoid) {
+        this.alunoid = alunoid;
+    }
     private String Ata;
 
     public int getRelatorioid() {

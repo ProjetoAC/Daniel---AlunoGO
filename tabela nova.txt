@@ -15,10 +15,16 @@ nome VARCHAR(20) NOT NULL DEFAULT '',
 sobrenome VARCHAR(20) NOT NULL DEFAULT '',
 idade INTEGER NOT NULL,
 rua VARCHAR(20) NOT NULL DEFAULT '',
-numero INTEGER NOT NULL,
+numero INTEGER NULL,
 bairro VARCHAR(20) NOT NULL DEFAULT '',
 cidade VARCHAR(20) NOT NULL DEFAULT '',
 nome_responsavel VARCHAR(20) NOT NULL DEFAULT '',
 telefone_responsavel VARCHAR(20) NOT NULL DEFAULT '',
 parentesco_responsavel VARCHAR(20) NOT NULL DEFAULT ''
+);
+create table Relatorio(
+relatorioid SERIAL primary key not null,
+alunoid SERIAL not null,
+ata text not null default '',
+CONSTRAINT FK_Alunos_Ata FOREIGN KEY (alunoID) REFERENCES alunos (alunoID)
 );

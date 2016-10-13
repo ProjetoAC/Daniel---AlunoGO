@@ -7,9 +7,11 @@ package View;
 
 import Controller.AlunoController;
 import Controller.ImagemController;
+import Controller.RelatorioController;
 import Dao.ImagemDAO;
 import Model.Aluno;
 import Model.Imagem;
+import Model.Relatorio;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.logging.Level;
@@ -31,6 +33,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     BufferedImage imagem;
     Aluno aluno;
     AlunoController alunocontroller;
+    Relatorio relatorio;
+    RelatorioController relatoriocontroller;
 
     public TelaPrincipal() {
 
@@ -56,8 +60,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton5 = new javax.swing.JButton();
+        txtAta = new javax.swing.JTextPane();
+        btnGravar_Ata = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -90,7 +94,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtParentesco_Responsavel = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel15 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGravar_Alunos = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jTextField12 = new javax.swing.JTextField();
@@ -138,9 +142,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(txtAta);
 
-        jButton5.setText("Gravar");
+        btnGravar_Ata.setText("Gravar");
+        btnGravar_Ata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravar_AtaActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Pesquisar");
 
@@ -152,7 +161,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGravar_Ata, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
                         .addComponent(jButton6)
                         .addGap(18, 18, 18)
@@ -167,7 +176,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(btnGravar_Ata)
                     .addComponent(jButton6)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,9 +188,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Nome:");
 
-        jLabel2.setText("Sobre Nome:");
+        jLabel2.setText("Sobrenome:");
 
-        jLabel3.setText("Nascimento:");
+        jLabel3.setText("Idade:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel4.setText("Dados do Aluno:");
@@ -223,10 +232,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel15.setText("Instituição:");
 
-        jButton1.setText("Gravar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGravar_Alunos.setText("Gravar");
+        btnGravar_Alunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGravar_AlunosActionPerformed(evt);
             }
         });
 
@@ -274,7 +283,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnGravar_Alunos)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton4)
                                 .addGap(18, 18, 18)
@@ -410,7 +419,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton1)
+                            .addComponent(btnGravar_Alunos)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(44, 44, 44))
         );
@@ -452,8 +461,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             ImagemDAO dao = new ImagemDAO();
             Boolean insere = dao.inserir(obj);
             if (insere) {
-                String caminho = getClass().getResource
-        ("C:\\ProjetoAC\\Daniel---AlunoGO\\Daniel---AlunoGO\\Imagem\\").toString().substring(5);
+                String caminho = getClass().getResource("C:\\ProjetoAC\\Daniel---AlunoGO\\Daniel---AlunoGO\\Imagem\\").toString().substring(5);
                 File outputfile = new File(caminho + "image.jpg");
                 ImageIO.write(imagem, "jpg", outputfile);
                 JOptionPane.showMessageDialog(rootPane, "Imagem enviada com sucesso");
@@ -488,9 +496,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImagemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cadastrar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnGravar_AlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravar_AlunosActionPerformed
+        cadastrar_Aluno();
+    }//GEN-LAST:event_btnGravar_AlunosActionPerformed
+
+    private void btnGravar_AtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravar_AtaActionPerformed
+        cadastrar_Ata();
+    }//GEN-LAST:event_btnGravar_AtaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,12 +542,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
+    private javax.swing.JButton btnGravar_Alunos;
+    private javax.swing.JButton btnGravar_Ata;
     private javax.swing.JButton btnImagem;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -569,8 +581,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbimagem;
+    private javax.swing.JTextPane txtAta;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtNascimento;
@@ -582,15 +594,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtSobrenome;
     private javax.swing.JTextField txtTelefone_Responsavel;
     // End of variables declaration//GEN-END:variables
-    
-    public void cadastrar() {
+
+    public void cadastrar_Aluno() {
         if (txtRua.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo Rua Invalido");
             txtRua.grabFocus();
-            return;
-        } else if (txtNumero.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo Numero Invalido");
-            txtNumero.grabFocus();
             return;
         } else if (txtBairro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo Bairro Invalido");
@@ -622,10 +630,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        if (aluno == null) {
+        if ((aluno == null) && (alunocontroller == null)) {
             aluno = new Aluno();
-        }
-        if (alunocontroller == null) {
             alunocontroller = new AlunoController();
         }
         aluno.setRua(txtRua.getText());
@@ -638,12 +644,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         aluno.setNome_responsavel(txtNome_Responsavel.getText());
         aluno.setTelefone_responsavel(txtTelefone_Responsavel.getText());
         aluno.setParentesco_responsavel(txtParentesco_Responsavel.getText());
-        
+
         if (alunocontroller.insereAluno(aluno)) {
             limpaCampos();
+            JOptionPane.showMessageDialog(null, "Aluno Cadastrado com Sucesso");
         }
     }
-    public void limpaCampos(){
+
+    public void limpaCampos() {
         txtRua.setText("");
         txtNumero.setText("");
         txtBairro.setText("");
@@ -654,5 +662,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtNome_Responsavel.setText("");
         txtTelefone_Responsavel.setText("");
         txtParentesco_Responsavel.setText("");
+    }
+
+    public void limpacampo() {
+        txtAta.setText("");
+    }
+
+    public void cadastrar_Ata() {
+        if (txtAta.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo Rua Invalido");
+            txtAta.grabFocus();
+            return;
+        }
+        if ((relatorio == null) && (relatoriocontroller == null)) {
+            relatorio = new Relatorio();
+            relatoriocontroller = new RelatorioController();
+        }
+        relatorio.setAta(txtAta.getText());
+        if (relatoriocontroller.insereRelatorio(relatorio)) {
+            limpacampo();
+            JOptionPane.showMessageDialog(null, "Relatorio Cadastrado com Sucesso");
+        }
     }
 }
