@@ -51,7 +51,7 @@ public class InstituicaoDao {
                 id = rs.getInt("INSTITUICAOID");
             }
             instituicao.setInstituicaoid(id);
-            sql = "INSERT INTO instituicao( instituicaoid, nome, natureza_administrativa "
+            sql = "INSERT INTO instituicao( instituicaoid, nome, natureza_admnistrativa)"
                     + "VALUES (" + instituicao.getInstituicaoid()
                     + ", '" + instituicao.getNome()
                     + "', '" + instituicao.getNatureza_administrativa()
@@ -84,13 +84,13 @@ public class InstituicaoDao {
         Instituicao instituicao;
         ArrayList<Instituicao> lista = new ArrayList<>();
         try {
-            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMINISTRATIVA"
+            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMNISTRATIVA"
                     + " FROM INSTITUICAO");
             while (rs.next()) {
                 instituicao = new Instituicao();
                 instituicao.setInstituicaoid(rs.getInt("INSTITUICAOID"));
                 instituicao.setNome(rs.getString("NOME"));
-                instituicao.setNatureza_administrativa(rs.getString("NATUREZA_ADMINISTRATIVA"));
+                instituicao.setNatureza_administrativa(rs.getString("natureza_admnistrativa"));
                 lista.add(instituicao);
             }
         } catch (SQLException ex) {

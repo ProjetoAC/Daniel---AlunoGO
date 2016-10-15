@@ -44,7 +44,7 @@ public class RelatorioDao {
         int id = 0;
         try {
 
-            sql = "SELECT RELATORIOID FROM RELATORIO";
+            sql = "SELECT COALESCE(MAX(RELATORIOID)+1, 1) AS RELATORIOID FROM RELATORIO";
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 id = rs.getInt("RELATORIOID");

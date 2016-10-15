@@ -9,10 +9,9 @@ import Model.Instituicao;
  * @author Daniel
  */
 public class TelaInstituicao extends javax.swing.JFrame {
-    
+
     InstituicaoController instituicaoController;
     Instituicao instituicao;
-
     /**
      * Creates new form Instituicao
      */
@@ -117,13 +116,13 @@ public class TelaInstituicao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
-            if (evt.getKeyChar() == 10) {
+        if (evt.getKeyChar() == 10) {
             txtNatureza.grabFocus();
         }
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtNaturezaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNaturezaKeyTyped
-       if (evt.getKeyChar() == 10) {
+        if (evt.getKeyChar() == 10) {
             btnGravar.grabFocus();
         }
     }//GEN-LAST:event_txtNaturezaKeyTyped
@@ -189,7 +188,20 @@ public class TelaInstituicao extends javax.swing.JFrame {
             txtNatureza.grabFocus();
             return;
         }
+        if ((instituicao == null) || (instituicaoController == null)) {
+            instituicao = new Instituicao();
+            instituicaoController = new InstituicaoController();
+        }
         instituicao.setNome(txtNome.getText());
         instituicao.setNatureza_administrativa(txtNatureza.getText());
+        if (instituicaoController.insereInstituicao(instituicao)) {
+            limpaCampos();
+            JOptionPane.showMessageDialog(null, "Instituicao Cadastrada com Sucesso");
+        }
+    }
+    private void limpaCampos(){
+        instituicao = null;
+        txtNome.setText("");
+        txtNatureza.setText("");
     }
 }

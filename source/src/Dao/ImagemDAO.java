@@ -6,46 +6,47 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Senai
  */
 public class ImagemDAO {
-    public Boolean inserir(Imagem imagem) throws SQLException{
+
+    public Boolean inserir(Imagem imagem) throws SQLException {
         Boolean retorno = false;
         String sql = "INSERT INTO imagem (binario) values (?)";
-        
+
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
-        try{
+        try {
             pst.setBytes(1, imagem.getImagem());
-        }catch(Exception ex){
+            pst.executeUpdate();
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         return retorno;
     }
-        public Imagem buscar(Integer id) throws SQLException{
+
+    public Imagem buscar(Integer id) throws SQLException {
         Imagem retorno = null;
         String sql = "SELECT id ,binario from imagem where id=?";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
-        
+
         try {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 retorno = new Imagem();
                 retorno.setImagemid(rs.getInt("id"));
-                retorno.setImagem(rs.getBytes("bianrio"));
-            
+                retorno.setImagem(rs.getBytes("binario"));
+
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             retorno = null;
         }
-        
+
         return retorno;
     }
 }

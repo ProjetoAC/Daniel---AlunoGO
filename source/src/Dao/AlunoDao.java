@@ -12,9 +12,9 @@ import View.TelaPrincipal;
  *
  * @author Daniel
  */
-
 public class AlunoDao {
-     Statement st;
+
+    Statement st;
 
     public AlunoDao() {
         try {
@@ -23,18 +23,18 @@ public class AlunoDao {
             System.out.println("Erro ao pegar conexao" + ex);
         }
     }
+
     public Aluno getAlunoByID(int id) {
         ResultSet rs;
         Aluno aluno;
         try {
-            rs = st.executeQuery("SELECT ALUNOID, NOME, SOBRENOME, IDADE, RUA, NUMERO," 
+            rs = st.executeQuery("SELECT ALUNOID, NOME_COMPLETO, IDADE, RUA, NUMERO,"
                     + " BAIRRO, CIDADE, NOME_RESPONSAVEL, TELEFONE_RESPONSAVEL,"
                     + " PARENTESCO_RESPONSAVEL FROM ALUNOS WHERE ALUNOID = " + id);
             while (rs.next()) {
                 aluno = new Aluno();
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
-                aluno.setNome(rs.getString("NOME"));
-                aluno.setSobrenome(rs.getString("SOBRENOME"));
+                aluno.setNome_completo(rs.getString("NOME_COMPLETO"));
                 aluno.setIdade(rs.getInt("IDADE"));
                 aluno.setRua(rs.getString("RUA"));
                 aluno.setNumero(rs.getInt("NUMERO"));
@@ -50,6 +50,7 @@ public class AlunoDao {
         }
         return null;
     }
+
     public boolean insereAluno(Aluno aluno) {
         String sql = "";
         ResultSet rs;
@@ -65,8 +66,7 @@ public class AlunoDao {
             sql = "INSERT INTO alunos( alunoid, nome, sobrenome, idade, rua, numero, "
                     + "bairro, cidade, nome_responsavel, telefone_responsavel, parentesco_responsavel)"
                     + "VALUES (" + aluno.getAlunoid()
-                    + ", '" + aluno.getNome()
-                    + "', '" + aluno.getSobrenome()
+                    + ", '" + aluno.getNome_completo()
                     + "', " + aluno.getIdade()
                     + ", '" + aluno.getRua()
                     + "', " + aluno.getNumero()
@@ -80,15 +80,16 @@ public class AlunoDao {
             return true;
         } catch (SQLException ex) {
             System.out.println("Problema ao inserir aluno: " + ex);
+            aluno.setAlunoid(0);
             JOptionPane.showMessageDialog(null, "Erro:" + ex);
         }
         return false;
     }
+
     public boolean updateAluno(Aluno aluno) {
         String sql = "UPDATE alunos SET "
                 + "alunoid=" + aluno.getAlunoid() + ", "
-                + "nome='" + aluno.getNome() + "', "
-                + "sobrenome='" + aluno.getSobrenome() + "', "
+                + "nome_completo='" + aluno.getNome_completo() + "', "
                 + "idade=" + aluno.getIdade() + ", "
                 + "rua='" + aluno.getRua() + "', "
                 + "numero=" + aluno.getNumero() + ", "
@@ -107,20 +108,20 @@ public class AlunoDao {
         }
         return false;
     }
+
     public ArrayList<Aluno> getAlunos() {
         ResultSet rs;
         Aluno aluno;
         ArrayList<Aluno> lista = new ArrayList<>();
         try {
-            rs = st.executeQuery("SELECT ALUNOID, NOME, SOBRENOME, IDADE,"
+            rs = st.executeQuery("SELECT ALUNOID, NOME_COMPLETO, IDADE,"
                     + " RUA, NUMERO, BAIRRO, CIDADE, NOME_RESPONSAVEL,"
                     + " TELEFONE_RESPONSAVEL, PARENTESCO_RESPONSAVEL"
                     + " FROM ALUNOS");
             while (rs.next()) {
                 aluno = new Aluno();
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
-                aluno.setNome(rs.getString("NOME"));
-                aluno.setSobrenome(rs.getString("SOBRENOME"));
+                aluno.setNome_completo("NOME_COMPLETO");
                 aluno.setIdade(rs.getInt("IDADE"));
                 aluno.setRua(rs.getString("RUA"));
                 aluno.setNumero(rs.getInt("NUMERO"));
@@ -137,6 +138,7 @@ public class AlunoDao {
         }
         return lista;
     }
+
     public boolean deleteAluno(int id) {
         String sql = "DELETE FROM ALUNOS WHERE ALUNOID = " + id;
         try {
@@ -149,25 +151,25 @@ public class AlunoDao {
         return false;
     }
     /* public ArrayList<Pessoa> Nome(String texto) {
-        ResultSet rs;
-        String sql = "SELECT PESSOAID, NOME, TELEFONE, EMAIL FROM PESSOA WHERE lower(NOME)like lower('%"
-                + texto + "%');";
-        Pessoa pessoa;
-        ArrayList<Pessoa> lista = new ArrayList<>();
-        try {
-            rs = st.executeQuery(sql);
-            while (rs.next()) {
-                pessoa = new Pessoa();
-                pessoa.setPessoaid(rs.getInt("PESSOAID"));
-                pessoa.setNome(rs.getString("NOME"));
-                pessoa.setTelefone(rs.getString("TELEFONE"));
-                pessoa.setEmail(rs.getString("EMAIL"));
-                lista.add(pessoa);
-            }
-        } catch (SQLException ex) {
-            System.out.println("Erro na pesquisa: " + ex);
-            JOptionPane.showMessageDialog(null, "Erro na pesquisa:" + sql);
-        }
-        return lista;
-    }*/
+     ResultSet rs;
+     String sql = "SELECT PESSOAID, NOME, TELEFONE, EMAIL FROM PESSOA WHERE lower(NOME)like lower('%"
+     + texto + "%');";
+     Pessoa pessoa;
+     ArrayList<Pessoa> lista = new ArrayList<>();
+     try {
+     rs = st.executeQuery(sql);
+     while (rs.next()) {
+     pessoa = new Pessoa();
+     pessoa.setPessoaid(rs.getInt("PESSOAID"));
+     pessoa.setNome(rs.getString("NOME"));
+     pessoa.setTelefone(rs.getString("TELEFONE"));
+     pessoa.setEmail(rs.getString("EMAIL"));
+     lista.add(pessoa);
+     }
+     } catch (SQLException ex) {
+     System.out.println("Erro na pesquisa: " + ex);
+     JOptionPane.showMessageDialog(null, "Erro na pesquisa:" + sql);
+     }
+     return lista;
+     }*/
 }
