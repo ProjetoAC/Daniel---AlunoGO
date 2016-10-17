@@ -12,6 +12,7 @@ public class TelaInstituicao extends javax.swing.JFrame {
 
     InstituicaoController instituicaoController;
     Instituicao instituicao;
+
     /**
      * Creates new form Instituicao
      */
@@ -54,7 +55,12 @@ public class TelaInstituicao extends javax.swing.JFrame {
             }
         });
 
-        btnExcluir.setText("Excluir");
+        btnExcluir.setText("Voltar");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnGravar.setText("Gravar");
         btnGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +90,7 @@ public class TelaInstituicao extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnGravar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                                 .addComponent(btnExcluir))
                             .addComponent(txtNome)
                             .addComponent(txtNatureza))
@@ -130,6 +136,11 @@ public class TelaInstituicao extends javax.swing.JFrame {
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
         addInstituicao();
     }//GEN-LAST:event_btnGravarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        new TelaPrincipal().setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,7 +210,8 @@ public class TelaInstituicao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Instituicao Cadastrada com Sucesso");
         }
     }
-    private void limpaCampos(){
+
+    private void limpaCampos() {
         instituicao = null;
         txtNome.setText("");
         txtNatureza.setText("");

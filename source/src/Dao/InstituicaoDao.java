@@ -25,7 +25,7 @@ public class InstituicaoDao {
         ResultSet rs;
         Instituicao instituicao;
         try {
-            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATURAZA_ADMINISTRATIVA " 
+            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMINISTRATIVA " 
                     + "FROM INSTITUICAO WHERE INSTITUICAOID = " + id);
             while (rs.next()) {
                 instituicao = new Instituicao();
@@ -51,7 +51,7 @@ public class InstituicaoDao {
                 id = rs.getInt("INSTITUICAOID");
             }
             instituicao.setInstituicaoid(id);
-            sql = "INSERT INTO instituicao( instituicaoid, nome, natureza_admnistrativa)"
+            sql = "INSERT INTO instituicao( instituicaoid, nome, natureza_admInistrativa)"
                     + "VALUES (" + instituicao.getInstituicaoid()
                     + ", '" + instituicao.getNome()
                     + "', '" + instituicao.getNatureza_administrativa()
@@ -84,17 +84,17 @@ public class InstituicaoDao {
         Instituicao instituicao;
         ArrayList<Instituicao> lista = new ArrayList<>();
         try {
-            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMNISTRATIVA"
+            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMINISTRATIVA"
                     + " FROM INSTITUICAO");
             while (rs.next()) {
                 instituicao = new Instituicao();
                 instituicao.setInstituicaoid(rs.getInt("INSTITUICAOID"));
                 instituicao.setNome(rs.getString("NOME"));
-                instituicao.setNatureza_administrativa(rs.getString("natureza_admnistrativa"));
+                instituicao.setNatureza_administrativa(rs.getString("NATUREZA_ADMINISTRATIVA"));
                 lista.add(instituicao);
             }
         } catch (SQLException ex) {
-            System.out.println("Erro de consulta" + ex);
+            System.out.println("Erro de consulta " + ex);
             JOptionPane.showMessageDialog(null, "Erro:" + ex);
         }
         return lista;

@@ -28,3 +28,7 @@ alunoid SERIAL not null,
 ata text not null default '',
 CONSTRAINT FK_Alunos_Ata FOREIGN KEY (alunoID) REFERENCES alunos (alunoID)
 );
+create table instituicao(
+insttituicaoid integer not null,
+natureza_admnistrativa not null default ''
+);
