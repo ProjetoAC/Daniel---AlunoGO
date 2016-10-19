@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Senai/Desktop/AlunoGO2/src/view/CadastroAluno.java</file>
-            <file>file:/C:/Users/Senai/Desktop/AlunoGO2/src/view/PesquisaInstituicao.java</file>
-            <file>file:/C:/Users/Senai/Desktop/AlunoGO2/src/dao/InstituicaoDao.java</file>
-            <file>file:/C:/Users/Senai/Desktop/AlunoGO2/src/view/Principal.java</file>
-            <file>file:/C:/Users/Senai/Desktop/AlunoGO2/src/controller/InstituicaoController.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/Principal.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/PesquisaAluno.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/model/Aluno.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/CadastroAluno.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/PesquisaInstituicao.java</file>
         </group>
     </open-files>
 </project-private>

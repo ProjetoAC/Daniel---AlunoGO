@@ -95,6 +95,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jmiPesquisarInstituicao);
 
         jMenuItem2.setText("Pesquisar Aluno");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -143,6 +148,10 @@ public class Principal extends javax.swing.JFrame {
     private void jmiPesquisarInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPesquisarInstituicaoActionPerformed
         
     }//GEN-LAST:event_jmiPesquisarInstituicaoActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

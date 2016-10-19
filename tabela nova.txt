@@ -8,12 +8,14 @@ create table Imagem(
 id SERIAL PRIMARY KEY not null,
 binario BYTEA
 );
-
+create table instituicao(
+insttituicaoid integer primary key,
+nome varchar(20) not null default,
+natureza_admnistrativa varchar(07) not null default ''
+);
 create table alunos(
 alunoid SERIAL PRIMARY KEY NOT NULL,
 instituicaoid integer not null,
-nome VARCHAR(20) NOT NULL DEFAULT '',
-sobrenome VARCHAR(20) NOT NULL DEFAULT '',
 idade INTEGER NOT NULL,
 rua VARCHAR(20) NOT NULL DEFAULT '',
 numero INTEGER NULL,
@@ -22,6 +24,8 @@ cidade VARCHAR(20) NOT NULL DEFAULT '',
 nome_responsavel VARCHAR(20) NOT NULL DEFAULT '',
 telefone_responsavel VARCHAR(20) NOT NULL DEFAULT '',
 parentesco_responsavel VARCHAR(20) NOT NULL DEFAULT '',
+nome_completo varchar(50) not null default '',
+complemento varchar(100) not null default '',
 constraint fk_alunos_instituicao foreign key (instituicaoid) references instituicao (instituicaoid)
 );
 create table Relatorio(
@@ -30,9 +34,3 @@ alunoid SERIAL not null,
 ata text not null default '',
 CONSTRAINT FK_Alunos_Ata FOREIGN KEY (alunoID) REFERENCES alunos (alunoID)
 );
-create table instituicao(
-insttituicaoid integer not null,
-natureza_admnistrativa not null default ''
-);
-
-Tabela em Netbeans

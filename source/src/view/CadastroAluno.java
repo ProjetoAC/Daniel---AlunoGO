@@ -62,7 +62,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtNascimento = new javax.swing.JTextField();
+        txtIdade = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
@@ -86,16 +86,16 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         btnGravar_Alunos = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jTextField12 = new javax.swing.JTextField();
-        jcbAluno = new javax.swing.JComboBox<String>();
         lbimagem = new javax.swing.JLabel();
         btnImagem = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtComplemento = new javax.swing.JTextField();
         txtInstituicao = new javax.swing.JTextField();
         btnPesquisa = new javax.swing.JButton();
         lblInstituicao = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnPesquisa_Aluno = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
@@ -154,15 +154,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
 
         jButton4.setText("Editar");
 
-        jTextField12.setText("Pesquisar...");
-
-        jcbAluno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pesquisar" }));
-        jcbAluno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbAlunoActionPerformed(evt);
-            }
-        });
-
         btnImagem.setText("Selecionar");
         btnImagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,9 +170,9 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Complemento:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtComplemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtComplementoActionPerformed(evt);
             }
         });
 
@@ -192,7 +183,16 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             }
         });
 
-        lblInstituicao.setText("jLabel10");
+        lblInstituicao.setText("Nome");
+
+        jLabel10.setText("Pesquisar:");
+
+        btnPesquisa_Aluno.setText("Pesquisar");
+        btnPesquisa_Aluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisa_AlunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,16 +212,17 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(23, 23, 23)
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNome_completo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNome_completo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,21 +235,19 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                             .addComponent(btnGravar_Alunos, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(47, 47, 47)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel14))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtNome_Responsavel, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                                            .addComponent(txtTelefone_Responsavel)
-                                            .addComponent(txtParentesco_Responsavel)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel14))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtNome_Responsavel, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                                        .addComponent(txtTelefone_Responsavel)
+                                        .addComponent(txtParentesco_Responsavel))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +264,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel7))
                                         .addGap(42, 42, 42)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(txtRua)
                                                 .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,14 +277,14 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                                 .addGap(37, 37, 37)
                                 .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(jButton4)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPesquisa_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -294,21 +293,10 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnImagem)
-                            .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,8 +316,19 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)))
+                            .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnImagem)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(btnPesquisa_Aluno))
+                        .addGap(24, 24, 24)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -341,7 +340,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                             .addComponent(txtNome_completo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -389,17 +388,17 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             .addGap(0, 522, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 10, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 11, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtComplementoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         busca_Foto();
@@ -426,10 +425,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnImagemActionPerformed
 
-    private void jcbAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlunoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbAlunoActionPerformed
-
     private void btnGravar_AlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravar_AlunosActionPerformed
         cadastrar_Aluno();
         cadastrar_Imagem();
@@ -449,16 +444,24 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         setInstituicao(pesquisaInstituicao.getInstituicaoSelecioanda());
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
+    private void btnPesquisa_AlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisa_AlunoActionPerformed
+        PesquisaAluno pesquisaAluno = new PesquisaAluno(null, closable);
+        pesquisaAluno.setVisible(true);
+        setAluno(pesquisaAluno.getAlunoSelecionado());
+    }//GEN-LAST:event_btnPesquisa_AlunoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGravar_Alunos;
     private javax.swing.JButton btnImagem;
     private javax.swing.JButton btnPesquisa;
+    private javax.swing.JButton btnPesquisa_Aluno;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -476,15 +479,13 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JComboBox<String> jcbAluno;
     private javax.swing.JLabel lbimagem;
     private javax.swing.JLabel lblInstituicao;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtInstituicao;
-    private javax.swing.JTextField txtNascimento;
     private javax.swing.JTextField txtNome_Responsavel;
     private javax.swing.JTextField txtNome_completo;
     private javax.swing.JTextField txtNumero;
@@ -506,9 +507,9 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Campo Cidade Invalido");
             txtCidade.grabFocus();
             return;
-        } else if (txtNascimento.getText().equals("")) {
+        } else if (txtIdade.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo Nascimento Invalido");
-            txtNascimento.grabFocus();
+            txtIdade.grabFocus();
             return;
         } else if (txtNome_Responsavel.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo Nome Responsavel Invalido");
@@ -529,15 +530,16 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             alunocontroller = new AlunoController();
         }
         aluno.setRua(txtRua.getText());
-        aluno.setInstituicaoid(Integer.parseInt(txtNumero.getText()));
+        aluno.setInstituicaoid(Integer.parseInt(txtInstituicao.getText()));
         aluno.setNumero(Integer.parseInt(txtNumero.getText()));
         aluno.setBairro(txtBairro.getText());
         aluno.setCidade(txtCidade.getText());
         aluno.setNome_completo(txtNome_completo.getText());
-        aluno.setIdade(Integer.parseInt(txtNascimento.getText()));
+        aluno.setIdade(Integer.parseInt(txtIdade.getText()));
         aluno.setNome_responsavel(txtNome_Responsavel.getText());
         aluno.setTelefone_responsavel(txtTelefone_Responsavel.getText());
         aluno.setParentesco_responsavel(txtParentesco_Responsavel.getText());
+        aluno.setComplemento(txtComplemento.getText());
 
         if (alunocontroller.insereAluno(aluno)) {
             limpaCampos();
@@ -552,10 +554,13 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         txtBairro.setText("");
         txtCidade.setText("");
         txtNome_completo.setText("");
-        txtNascimento.setText("");
+        txtIdade.setText("");
         txtNome_Responsavel.setText("");
         txtTelefone_Responsavel.setText("");
         txtParentesco_Responsavel.setText("");
+        txtComplemento.setText("");
+        txtInstituicao.setText("");
+        lblInstituicao.setText("Nome");
         lbimagem.setIcon(null);
     }
 
@@ -607,9 +612,20 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     }
 
     private void setInstituicao(Instituicao instituicao) {
-
         txtInstituicao.setText(instituicao.getInstituicaoid() + "");
         lblInstituicao.setText(instituicao.getNome());
     }
 
+    private void setAluno(Aluno aluno) {
+        txtNome_completo.setText(aluno.getNome_completo());
+        txtIdade.setText(aluno.getIdade() + "");
+        txtRua.setText(aluno.getRua());
+        txtNumero.setText(aluno.getNumero() + "");
+        txtBairro.setText(aluno.getBairro());
+        txtCidade.setText(aluno.getCidade());
+        txtComplemento.setText(aluno.getComplemento());
+        txtNome_Responsavel.setText(aluno.getNome_responsavel());
+        txtTelefone_Responsavel.setText(aluno.getTelefone_responsavel());
+        txtParentesco_Responsavel.setText(aluno.getParentesco_responsavel());
+    }
 }

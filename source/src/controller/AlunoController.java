@@ -26,8 +26,8 @@ public class AlunoController {
         }
     }
 
-    public ArrayList<Aluno> getAlunos() {
-        return alunoDao.getAlunos();
+    public ArrayList<Aluno> getAlunos(String texto) {
+        return alunoDao.getAlunos(texto);
     }
 
     public boolean deleteAluno(int id) {

@@ -9,6 +9,7 @@ public class Aluno {
     private int alunoid;
     private int instituicaoid;
     private String nome_completo;
+    private String complemento;
     private int idade;
     private String rua;
     private int numero;
@@ -17,6 +18,14 @@ public class Aluno {
     private String nome_responsavel;
     private String telefone_responsavel;
     private String parentesco_responsavel;        
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 
     public int getInstituicaoid() {
         return instituicaoid;

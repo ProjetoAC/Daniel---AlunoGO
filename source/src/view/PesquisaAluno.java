@@ -3,19 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package View;
+
+import controller.AlunoController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Aluno;
 
 /**
  *
  * @author Senai
  */
-public class PesquisaAluno extends javax.swing.JInternalFrame {
+public class PesquisaAluno extends javax.swing.JDialog {
+
+    DefaultTableModel modelo;
+    AlunoController alunoController;
+    ArrayList<Aluno> listaAluno;
+    Aluno aluno;
 
     /**
      * Creates new form PesquisaAluno
      */
-    public PesquisaAluno() {
+    public PesquisaAluno(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+        setModelo();
+        alunoController = new AlunoController();
+        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dw = getSize();
+        setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
+        listaAluno();
     }
 
     /**
@@ -27,21 +46,181 @@ public class PesquisaAluno extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtPesquisa = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jblPequisa = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPesquisa = new javax.swing.JTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
+            }
+        });
+
+        jLabel1.setText("Pesquisar:");
+
+        jblPequisa.setText("Pesquisar");
+        jblPequisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jblPequisaActionPerformed(evt);
+            }
+        });
+
+        tblPesquisa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPesquisaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblPesquisa);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jblPequisa)
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jblPequisa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPesquisaMouseClicked
+        getIdSelecionado();
+    }//GEN-LAST:event_tblPesquisaMouseClicked
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        listaAluno();
+    }//GEN-LAST:event_txtPesquisaKeyPressed
+
+    private void jblPequisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jblPequisaActionPerformed
+        listaAluno();
+    }//GEN-LAST:event_jblPequisaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PesquisaAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PesquisaAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PesquisaAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PesquisaAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                PesquisaAluno dialog = new PesquisaAluno(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jblPequisa;
+    private javax.swing.JTable tblPesquisa;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
+private void setModelo() {
+
+        modelo = new DefaultTableModel();
+        modelo.addColumn("ID Aluno");
+        modelo.addColumn("Nome");
+        tblPesquisa.setModel(modelo);
+
+    }
+
+    private void insereTabela(Aluno aluno) {
+        Object[] linha = new Object[2];
+        linha[0] = aluno.getAlunoid();
+        linha[1] = aluno.getNome_completo();
+        modelo.addRow(linha);
+    }
+
+    private void listaAluno() {
+        setModelo();
+        ArrayList<Aluno> lista;
+        lista = alunoController.getAlunos(txtPesquisa.getText());
+        for (int x = 0; x < lista.size(); x++) {
+            Aluno ac = lista.get(x);
+            insereTabela(ac);
+        }
+        listaAluno = lista;
+    }
+
+    private void getIdSelecionado() {
+        int linha = tblPesquisa.getSelectedRow();
+        int id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
+        for (Aluno in : listaAluno) {
+            if (in.getInstituicaoid() == id) {
+                aluno = in;
+                break;
+            }
+        }
+        this.dispose();
+    }
+
+    public Aluno getAlunoSelecioando() {
+        return aluno;
+    }
 }

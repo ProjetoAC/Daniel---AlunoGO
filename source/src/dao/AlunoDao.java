@@ -62,12 +62,12 @@ public class AlunoDao {
                 id = rs.getInt("ALUNOID");
             }
             aluno.setAlunoid(id);
-            sql = "INSERT INTO alunos( alunoid, instituicaoid, nome_completo, idade, rua, numero, "
-                    + "bairro, cidade, nome_responsavel, telefone_responsavel, parentesco_responsavel)"
+            sql = "INSERT INTO alunos( alunoid, instituicaoid, idade, rua, numero, "
+                    + "bairro, cidade, nome_responsavel, telefone_responsavel, parentesco_responsavel, nome_completo,"
+                    + " complemento)"
                     + "VALUES (" + aluno.getAlunoid()
                     + ", " + aluno.getInstituicaoid()
-                    + ", '" + aluno.getNome_completo()
-                    + "', " + aluno.getIdade()
+                    + ", " + aluno.getIdade()
                     + ", '" + aluno.getRua()
                     + "', " + aluno.getNumero()
                     + ", '" + aluno.getBairro()
@@ -75,6 +75,8 @@ public class AlunoDao {
                     + "', '" + aluno.getNome_responsavel()
                     + "', '" + aluno.getTelefone_responsavel()
                     + "', '" + aluno.getParentesco_responsavel()
+                    + "', '" + aluno.getNome_completo()
+                    + "', '" + aluno.getComplemento()
                     + "')";
             st.execute(sql);
             return true;
@@ -109,15 +111,15 @@ public class AlunoDao {
         return false;
     }
 
-    public ArrayList<Aluno> getAlunos() {
+    public ArrayList<Aluno> getAlunos(String texto) {
         ResultSet rs;
         Aluno aluno;
-        ArrayList<Aluno> lista = new ArrayList<>();
+        ArrayList<Aluno> lista = new ArrayList<Aluno>();
         try {
             rs = st.executeQuery("SELECT ALUNOID, NOME_COMPLETO, IDADE,"
                     + " RUA, NUMERO, BAIRRO, CIDADE, NOME_RESPONSAVEL,"
                     + " TELEFONE_RESPONSAVEL, PARENTESCO_RESPONSAVEL"
-                    + " FROM ALUNOS");
+                    + " FROM ALUNOS WHERE NOME LIKE LOWER('%"+texto+"%')");
             while (rs.next()) {
                 aluno = new Aluno();
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
