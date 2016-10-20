@@ -1,0 +1,47 @@
+create table funcionario(
+codigo integer primary key,
+nome_func character not null default '',
+data_entrada date not null,
+profissao character not null default '',
+salario real not null
+);
+
+alter table registro_de_ponto owner to POSTGRES
+
+create view view_funcionario as select * from funcionario
+
+select nome_func, profissao from view_funcionario
+
+create table registro_de_ponto(
+registro_ponto_id integer primary key,
+codigo integer not null,
+hora_entrada time without time zone,
+entrada date not null,
+constraint fk_funcionario_registro_de_ponto foreign key (codigo) 
+references funcionario (codigo) match simple on update no action on delete no action
+);
+
+drop table registro_de_ponto
+
+insert into funcionario(codigo, nome_func, data_entrada, profissao, salario) values
+			(1, 'a', '2016-10-19', 'b', 50.00),
+			(2, 'b', '2016-10-19', 'c', 60.00),
+			(3, 'c', '2016-10-19', 'd', 70.00),
+			(4, 'd', '2016-10-19', 'e', 80.00),
+			(5, 'e', '2016-10-19', 'f', 90.00),
+			(6, 'f', '2016-10-19', 'g', 60.00),
+			(7, 'g', '2016-10-19', 'h', 70.00),
+			(8, 'h', '2016-10-19', 'i', 80.00),
+			(9, 'i', '2016-10-19', 'j', 90.00);
+select * from registro_de_ponto
+insert into registro_de_ponto(registro_ponto_id, codigo, entrada) values
+			      (1, 2, '2016-10-19'),
+			      (2, 3, '2016-10-19'),
+			      (3, 9, '2016-10-19'),
+			      (4, 8, '2016-10-19'),
+			      (5, 1, '2016-10-19'),
+			      (6, 7, '2016-10-19');
+create index fki_cod_funcfk on registro_de_ponto using BTREE (registro_ponto_id)
+
+create view view_pontofunciona as select nome_func, entrada, data_entrada 
+from funcionario, registro_de_ponto where funcionario.codigo = registro_de_ponto.registro_ponto_id
