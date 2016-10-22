@@ -112,5 +112,4 @@ public class ImagemController {
     public Imagem buscaImagen(int id) throws SQLException{
         return new ImagemDAO().buscar(id);
     }
-
 }

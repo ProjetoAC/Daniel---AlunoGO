@@ -14,11 +14,12 @@ public class ImagemDAO {
 
     public Boolean inserir(Imagem imagem) throws SQLException {
         Boolean retorno = false;
-        String sql = "INSERT INTO imagem (binario) values (?)";
+        String sql = "INSERT INTO imagem (id, binario) values (?,?)";
 
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
         try {
-            pst.setBytes(1, imagem.getImagem());
+            pst.setInt(1, imagem.getImagemid());
+            pst.setBytes(2, imagem.getImagem());
             pst.executeUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);

@@ -96,7 +96,7 @@ public class AlunoDao {
                 + "rua='" + aluno.getRua() + "', "
                 + "numero=" + aluno.getNumero() + ", "
                 + "bairo='" + aluno.getBairro() + "', "
-                + "cidade='" + aluno.getCidade() + "',"
+                + "cidade='" + aluno.getCidade() + "', "
                 + "nome_responsavel='" + aluno.getNome_responsavel() + "', "
                 + "telefone_responsavel='" + aluno.getTelefone_responsavel() + "', "
                 + "parentescto_responsavel='" + aluno.getParentesco_responsavel() + "',"
@@ -118,12 +118,12 @@ public class AlunoDao {
         try {
             rs = st.executeQuery("SELECT ALUNOID, NOME_COMPLETO, IDADE,"
                     + " RUA, NUMERO, BAIRRO, CIDADE, NOME_RESPONSAVEL,"
-                    + " TELEFONE_RESPONSAVEL, PARENTESCO_RESPONSAVEL"
-                    + " FROM ALUNOS WHERE NOME LIKE LOWER('%"+texto+"%')");
+                    + " TELEFONE_RESPONSAVEL, PARENTESCO_RESPONSAVEL,INSTITUICAOID, COMPLEMENTO"
+                    + " FROM ALUNOS WHERE LOWER(NOME_COMPLETO) LIKE LOWER('%" + texto + "%')");
             while (rs.next()) {
                 aluno = new Aluno();
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
-                aluno.setNome_completo("NOME_COMPLETO");
+                aluno.setNome_completo(rs.getString("NOME_COMPLETO"));
                 aluno.setIdade(rs.getInt("IDADE"));
                 aluno.setRua(rs.getString("RUA"));
                 aluno.setNumero(rs.getInt("NUMERO"));
@@ -132,6 +132,8 @@ public class AlunoDao {
                 aluno.setNome_responsavel(rs.getString("NOME_RESPONSAVEL"));
                 aluno.setTelefone_responsavel(rs.getString("TELEFONE_RESPONSAVEL"));
                 aluno.setParentesco_responsavel(rs.getString("PARENTESCO_RESPONSAVEL"));
+                aluno.setInstituicaoid(rs.getInt("INSTITUICAOID"));
+                aluno.setComplemento(rs.getString("COMPLEMENTO"));
                 lista.add(aluno);
             }
         } catch (SQLException ex) {
@@ -152,26 +154,4 @@ public class AlunoDao {
         }
         return false;
     }
-    /* public ArrayList<Pessoa> Nome(String texto) {
-     ResultSet rs;
-     String sql = "SELECT PESSOAID, NOME, TELEFONE, EMAIL FROM PESSOA WHERE lower(NOME)like lower('%"
-     + texto + "%');";
-     Pessoa pessoa;
-     ArrayList<Pessoa> lista = new ArrayList<>();
-     try {
-     rs = st.executeQuery(sql);
-     while (rs.next()) {
-     pessoa = new Pessoa();
-     pessoa.setPessoaid(rs.getInt("PESSOAID"));
-     pessoa.setNome(rs.getString("NOME"));
-     pessoa.setTelefone(rs.getString("TELEFONE"));
-     pessoa.setEmail(rs.getString("EMAIL"));
-     lista.add(pessoa);
-     }
-     } catch (SQLException ex) {
-     System.out.println("Erro na pesquisa: " + ex);
-     JOptionPane.showMessageDialog(null, "Erro na pesquisa:" + sql);
-     }
-     return lista;
-     }*/
 }

@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/Principal.java</file>
-            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/PesquisaAluno.java</file>
-            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/model/Aluno.java</file>
-            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/CadastroAluno.java</file>
-            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/View/PesquisaInstituicao.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/view/CadastroAluno.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/view/PesquisaInstituicao.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/view/cadastroAta.java</file>
+            <file>file:/C:/ProjetoAC/Daniel---AlunoGO/Daniel---AlunoGO/source/src/model/Relatorio.java</file>
         </group>
     </open-files>
 </project-private>

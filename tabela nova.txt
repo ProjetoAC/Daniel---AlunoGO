@@ -9,8 +9,8 @@ id SERIAL PRIMARY KEY not null,
 binario BYTEA
 );
 create table instituicao(
-insttituicaoid integer primary key,
-nome varchar(20) not null default,
+instituicaoid integer primary key,
+nome varchar(20) not null default '',
 natureza_admnistrativa varchar(07) not null default ''
 );
 create table alunos(

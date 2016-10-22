@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
 import controller.AlunoController;
 import java.awt.Dimension;
@@ -18,7 +18,7 @@ import model.Aluno;
  */
 public class PesquisaAluno extends javax.swing.JDialog {
 
-    DefaultTableModel modelo;
+   DefaultTableModel modelo;
     AlunoController alunoController;
     ArrayList<Aluno> listaAluno;
     Aluno aluno;
@@ -120,10 +120,6 @@ public class PesquisaAluno extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPesquisaMouseClicked
-        getIdSelecionado();
-    }//GEN-LAST:event_tblPesquisaMouseClicked
-
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
         listaAluno();
     }//GEN-LAST:event_txtPesquisaKeyPressed
@@ -131,6 +127,10 @@ public class PesquisaAluno extends javax.swing.JDialog {
     private void jblPequisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jblPequisaActionPerformed
         listaAluno();
     }//GEN-LAST:event_jblPequisaActionPerformed
+
+    private void tblPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPesquisaMouseClicked
+        getIdSelecionado();
+    }//GEN-LAST:event_tblPesquisaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -157,6 +157,9 @@ public class PesquisaAluno extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PesquisaAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
@@ -212,6 +215,20 @@ private void setModelo() {
         int linha = tblPesquisa.getSelectedRow();
         int id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
         for (Aluno in : listaAluno) {
+            if (in.getAlunoid()== id) {
+                aluno = in;
+                break;
+            }
+        }
+        this.dispose();
+    }
+        public void getIdSelecionado(int id) {
+
+        if (id == 0) {
+            int linha = tblPesquisa.getSelectedRow();
+            id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
+        }
+        for (Aluno in : listaAluno) {
             if (in.getInstituicaoid() == id) {
                 aluno = in;
                 break;
@@ -220,7 +237,7 @@ private void setModelo() {
         this.dispose();
     }
 
-    public Aluno getAlunoSelecioando() {
+    public Aluno getAlunoSelecionado() {
         return aluno;
     }
 }

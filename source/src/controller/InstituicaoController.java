@@ -35,6 +35,11 @@ public class InstituicaoController {
         return instituicaoDao.getInstituicoesByName(texto);
     }
 
+    public Instituicao getInstituicoesById(int id) {
+        return instituicaoDao.getInstituicoesById(id);
+    }
+    
+    
     public boolean deleteInstituicao(int id) {
         return instituicaoDao.deleteInstituicao(id);
     }

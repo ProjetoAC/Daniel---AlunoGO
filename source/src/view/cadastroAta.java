@@ -9,6 +9,7 @@ import controller.RelatorioController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import model.Aluno;
 import model.Relatorio;
 
 /**
@@ -44,8 +45,9 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAta = new javax.swing.JTextPane();
         btnGravar_Ata = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jTextField11 = new javax.swing.JTextField();
+        lblAluno = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        txtAluno = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximumSize(null);
@@ -59,7 +61,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton6.setText("Pesquisar");
+        lblAluno.setText("Nome Aluno");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -67,34 +69,45 @@ public class cadastroAta extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnGravar_Ata, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(248, 248, 248)
-                        .addComponent(jButton6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGravar_Ata)
-                    .addComponent(jButton6)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAluno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
 
+        jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 891, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(452, Short.MAX_VALUE)
+                .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(374, 374, 374))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -103,7 +116,12 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(502, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -118,13 +136,18 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         cadastrar_Ata();
     }//GEN-LAST:event_btnGravar_AtaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       pesquisaAluno();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGravar_Ata;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField11;
+    private javax.swing.JLabel lblAluno;
+    private javax.swing.JTextField txtAluno;
     private javax.swing.JTextPane txtAta;
     // End of variables declaration//GEN-END:variables
  public void cadastrar_Ata() {
@@ -138,6 +161,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
             relatoriocontroller = new RelatorioController();
         }
         relatorio.setAta(txtAta.getText());
+        relatorio.setAlunoid(Integer.parseInt(txtAluno.getText()));
         if (relatoriocontroller.insereRelatorio(relatorio)) {
             limpacampo();
             JOptionPane.showMessageDialog(null, "Relatorio Cadastrado com Sucesso");
@@ -147,5 +171,15 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     public void limpacampo() {
         relatorio = null;
         txtAta.setText("");
+    }
+        private void setAluno(Aluno aluno) {
+        txtAluno.setText(aluno.getAlunoid() + "");
+        lblAluno.setText(aluno.getNome_completo());
+    }
+        private void pesquisaAluno() {
+        view.PesquisaAluno pesquisaAluno = new PesquisaAluno(null, true);
+        pesquisaAluno.setVisible(true);
+        Aluno aluno = pesquisaAluno.getAlunoSelecionado();
+        setAluno(aluno);
     }
 }

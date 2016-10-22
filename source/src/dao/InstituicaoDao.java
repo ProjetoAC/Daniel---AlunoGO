@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  * @author Daniel
  */
 public class InstituicaoDao {
+
     Statement st;
 
     public InstituicaoDao() {
@@ -21,11 +22,12 @@ public class InstituicaoDao {
             System.out.println("Erro ao pegar conexao" + ex);
         }
     }
+
     public Instituicao getInstituicaoByID(int id) {
         ResultSet rs;
         Instituicao instituicao;
         try {
-            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMNISTRATIVA " 
+            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMNISTRATIVA "
                     + "FROM INSTITUICAO WHERE INSTITUICAOID = " + id);
             while (rs.next()) {
                 instituicao = new Instituicao();
@@ -39,6 +41,7 @@ public class InstituicaoDao {
         }
         return null;
     }
+
     public boolean insereInstituicao(Instituicao instituicao) {
         String sql = "";
         ResultSet rs;
@@ -64,6 +67,7 @@ public class InstituicaoDao {
         }
         return false;
     }
+
     public boolean updateInstituicao(Instituicao instituicao) {
         String sql = "UPDATE alunos SET "
                 + "instituicaoid=" + instituicao.getInstituicaoid() + ", "
@@ -79,6 +83,7 @@ public class InstituicaoDao {
         }
         return false;
     }
+
     public ArrayList<Instituicao> getInstituicoes() {
         ResultSet rs;
         Instituicao instituicao;
@@ -99,6 +104,7 @@ public class InstituicaoDao {
         }
         return lista;
     }
+
     public boolean deleteInstituicao(int id) {
         String sql = "DELETE FROM INSTITUICAO WHERE INSTITUICAOID = " + id;
         try {
@@ -110,15 +116,14 @@ public class InstituicaoDao {
         }
         return false;
     }
-    
-    
-     public ArrayList<Instituicao> getInstituicoesByName(String texto) {
+
+    public ArrayList<Instituicao> getInstituicoesByName(String texto) {
         ResultSet rs;
         Instituicao instituicao;
         ArrayList<Instituicao> lista = new ArrayList<Instituicao>();
         try {
             rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMNISTRATIVA "
-                    + "FROM INSTITUICAO WHERE NOME LIKE LOWER('%"+texto+"%')");
+                    + "FROM INSTITUICAO WHERE NOME LIKE LOWER('%" + texto + "%')");
             while (rs.next()) {
                 instituicao = new Instituicao();
                 instituicao.setInstituicaoid(rs.getInt("INSTITUICAOID"));
@@ -132,6 +137,25 @@ public class InstituicaoDao {
         }
         return lista;
     }
-    
-    
+
+    public Instituicao getInstituicoesById(int id) {
+        ResultSet rs;
+        Instituicao instituicao;
+        try {
+            rs = st.executeQuery("SELECT INSTITUICAOID, NOME, NATUREZA_ADMNISTRATIVA "
+                    + "FROM INSTITUICAO WHERE INSTITUICAOID = " + id);
+            while (rs.next()) {
+                instituicao = new Instituicao();
+                instituicao.setInstituicaoid(rs.getInt("INSTITUICAOID"));
+                instituicao.setNome(rs.getString("NOME"));
+                instituicao.setNatureza_administrativa(rs.getString("NATUREZA_ADMNISTRATIVA"));
+                return instituicao;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro de consulta " + ex);
+            JOptionPane.showMessageDialog(null, "Erro:" + ex);
+        }
+        return null;
+    }
+
 }

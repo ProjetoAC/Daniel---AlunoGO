@@ -22,6 +22,7 @@ public class PesquisaInstituicao extends javax.swing.JDialog {
     InstituicaoController instituicaoController;
     ArrayList<Instituicao> listaInstituicao;
     Instituicao instituicao;
+    int controle = 0;
 
     /**
      * Creates new form PesquisaInstituicao2
@@ -34,8 +35,14 @@ public class PesquisaInstituicao extends javax.swing.JDialog {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
+        controle = 1;
         listaInstituicao();
+    }
 
+    public PesquisaInstituicao(int id) {
+        instituicaoController = new InstituicaoController();
+        listaInstituicao();
+        getIdSelecionado(id);
     }
 
     /**
@@ -127,8 +134,7 @@ public class PesquisaInstituicao extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
     private void tblPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPesquisaMouseClicked
-        
-        getIdSelecionado();
+        getIdSelecionado(0);
     }//GEN-LAST:event_tblPesquisaMouseClicked
 
     /**
@@ -199,19 +205,26 @@ public class PesquisaInstituicao extends javax.swing.JDialog {
     }
 
     private void listaInstituicao() {
-        setModelo();
         ArrayList<Instituicao> lista;
-        lista = instituicaoController.getInstituicoesByName(txtPesquisa.getText());
-        for (int x = 0; x < lista.size(); x++) {
-            Instituicao ic = lista.get(x);
-            insereTabela(ic);
+        if (controle == 1) {
+            lista = instituicaoController.getInstituicoesByName(txtPesquisa.getText());
+            setModelo();
+            for (int x = 0; x < lista.size(); x++) {
+                Instituicao ic = lista.get(x);
+                insereTabela(ic);
+            }
+        } else {
+            lista = instituicaoController.getInstituicoesByName("");
         }
         listaInstituicao = lista;
     }
 
-    private void getIdSelecionado() {
-        int linha = tblPesquisa.getSelectedRow();
-        int id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
+    private void getIdSelecionado(int id) {
+
+        if (id == 0) {
+            int linha = tblPesquisa.getSelectedRow();
+            id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
+        }
         for (Instituicao in : listaInstituicao) {
             if (in.getInstituicaoid() == id) {
                 instituicao = in;

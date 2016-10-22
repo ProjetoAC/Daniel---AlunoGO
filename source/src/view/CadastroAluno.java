@@ -31,6 +31,7 @@ import model.Relatorio;
 public class CadastroAluno extends javax.swing.JInternalFrame {
 
     BufferedImage imagem;
+    Imagem imagen;
     Aluno aluno;
     AlunoController alunocontroller;
     Relatorio relatorio;
@@ -88,7 +89,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         lbimagem = new javax.swing.JLabel();
         btnImagem = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtComplemento = new javax.swing.JTextField();
         txtInstituicao = new javax.swing.JTextField();
@@ -161,13 +161,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Busca");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Complemento:");
 
         txtComplemento.addActionListener(new java.awt.event.ActionListener() {
@@ -202,10 +195,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnImagem)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                    .addComponent(btnImagem)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -321,9 +311,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnImagem)
-                            .addComponent(jButton1))
+                        .addComponent(btnImagem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -400,10 +388,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtComplementoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        busca_Foto();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagemActionPerformed
         JFileChooser fc = new JFileChooser();
         int res = fc.showOpenDialog(null);
@@ -428,6 +412,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private void btnGravar_AlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravar_AlunosActionPerformed
         cadastrar_Aluno();
         cadastrar_Imagem();
+        limpaCampos();
+        JOptionPane.showMessageDialog(null, "Aluno Cadastrado com Sucesso");
     }//GEN-LAST:event_btnGravar_AlunosActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -439,15 +425,11 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtRuaActionPerformed
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
-        PesquisaInstituicao pesquisaInstituicao = new PesquisaInstituicao(null, closable);
-        pesquisaInstituicao.setVisible(true);
-        setInstituicao(pesquisaInstituicao.getInstituicaoSelecioanda());
+        pesquisaInstituicao(0);
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
     private void btnPesquisa_AlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisa_AlunoActionPerformed
-        PesquisaAluno pesquisaAluno = new PesquisaAluno(null, closable);
-        pesquisaAluno.setVisible(true);
-        setAluno(pesquisaAluno.getAlunoSelecionado());
+        pesquisaAluno();
     }//GEN-LAST:event_btnPesquisa_AlunoActionPerformed
 
 
@@ -456,7 +438,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnImagem;
     private javax.swing.JButton btnPesquisa;
     private javax.swing.JButton btnPesquisa_Aluno;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
@@ -542,8 +523,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         aluno.setComplemento(txtComplemento.getText());
 
         if (alunocontroller.insereAluno(aluno)) {
-            limpaCampos();
-            JOptionPane.showMessageDialog(null, "Aluno Cadastrado com Sucesso");
         }
     }
 
@@ -582,21 +561,23 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         }
     }
 
-    private void busca_Foto() {
+    private void busca_Foto(int id) {
+        view.PesquisaAluno pesquisaAluno = new view.PesquisaAluno(null, true);
+        pesquisaAluno.getIdSelecionado(id);
         try {
             Imagem imagem;
-            imagem = new ImagemController().buscaImagen(6);
-
+            imagem = new ImagemController().buscaImagen(id);
             ImagemController.exibiImagemLabel(imagem.getImagem(), lbimagem);
+        
         } catch (Exception ex) {
             System.out.println("Problema ao carregar imagem ");
         }
-
     }
 
     private void cadastrar_Imagem() {
         try {
             Imagem obj = new Imagem();
+            obj.setImagemid(aluno.getAlunoid());
             obj.setImagem(ImagemController.getImgBytes(imagem));
             ImagemDAO dao = new ImagemDAO();
             Boolean insere = dao.inserir(obj);
@@ -627,5 +608,26 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         txtNome_Responsavel.setText(aluno.getNome_responsavel());
         txtTelefone_Responsavel.setText(aluno.getTelefone_responsavel());
         txtParentesco_Responsavel.setText(aluno.getParentesco_responsavel());
+        txtInstituicao.setText(aluno.getInstituicaoid() + "");
+    }
+
+    private void pesquisaInstituicao(int id) {
+        PesquisaInstituicao pesquisaInstituicao;
+        if (id == 0) {
+            pesquisaInstituicao = new PesquisaInstituicao(null, closable);
+            pesquisaInstituicao.setVisible(true);
+        }else{
+            pesquisaInstituicao = new PesquisaInstituicao(id);
+        }
+        setInstituicao(pesquisaInstituicao.getInstituicaoSelecioanda());
+    }
+
+    private void pesquisaAluno() {
+        view.PesquisaAluno pesquisaAluno = new PesquisaAluno(null, true);
+        pesquisaAluno.setVisible(true);
+        Aluno aluno = pesquisaAluno.getAlunoSelecionado();
+        setAluno(aluno);
+        pesquisaInstituicao(aluno.getInstituicaoid());
+        busca_Foto(aluno.getAlunoid());
     }
 }

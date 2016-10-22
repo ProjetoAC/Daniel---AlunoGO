@@ -37,9 +37,6 @@ public class Principal extends javax.swing.JFrame {
         jmiCadatroInstituicao = new javax.swing.JMenuItem();
         jmiCadastroAluno = new javax.swing.JMenuItem();
         jmiCadastroAta = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jmiPesquisarInstituicao = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +54,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Cadastro");
 
-        jmiCadatroInstituicao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
         jmiCadatroInstituicao.setText("Cadastro Instituição");
         jmiCadatroInstituicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,26 +79,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jmiCadastroAta);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu1.setText("Pesquisa");
-
-        jmiPesquisarInstituicao.setText("Pesquisar Instituição");
-        jmiPesquisarInstituicao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiPesquisarInstituicaoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jmiPesquisarInstituicao);
-
-        jMenuItem2.setText("Pesquisar Aluno");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -145,14 +121,6 @@ public class Principal extends javax.swing.JFrame {
         cadastroAta.setVisible(true);
     }//GEN-LAST:event_jmiCadastroAtaActionPerformed
 
-    private void jmiPesquisarInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPesquisarInstituicaoActionPerformed
-        
-    }//GEN-LAST:event_jmiPesquisarInstituicaoActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -191,14 +159,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jmiCadastroAluno;
     private javax.swing.JMenuItem jmiCadastroAta;
     private javax.swing.JMenuItem jmiCadatroInstituicao;
-    private javax.swing.JMenuItem jmiPesquisarInstituicao;
     private javax.swing.JMenuItem jmiSair;
     private javax.swing.JMenu jmnArquivo;
     // End of variables declaration//GEN-END:variables
