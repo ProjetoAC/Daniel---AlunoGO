@@ -30,9 +30,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jmnArquivo = new javax.swing.JMenu();
-        jmiSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmiCadatroInstituicao = new javax.swing.JMenuItem();
         jmiCadastroAluno = new javax.swing.JMenuItem();
@@ -40,17 +39,12 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jmnArquivo.setText("Arquivo");
-
-        jmiSair.setText("Sair");
-        jmiSair.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/1477191296_exit.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiSairActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jmnArquivo.add(jmiSair);
-
-        jMenuBar1.add(jmnArquivo);
 
         jMenu2.setText("Cadastro");
 
@@ -86,11 +80,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 435, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 323, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,13 +99,6 @@ public class Principal extends javax.swing.JFrame {
         this.add(cadastroInstituição);
         cadastroInstituição.setVisible(true);
     }//GEN-LAST:event_jmiCadatroInstituicaoActionPerformed
-
-    private void jmiSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSairActionPerformed
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja realmente sair");
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_jmiSairActionPerformed
 
     private void jmiCadastroAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastroAlunoActionPerformed
         CadastroAluno cadastroAluno = new CadastroAluno();
@@ -120,6 +111,13 @@ public class Principal extends javax.swing.JFrame {
         this.add(cadastroAta);
         cadastroAta.setVisible(true);
     }//GEN-LAST:event_jmiCadastroAtaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja realmente sair");
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,12 +157,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmiCadastroAluno;
     private javax.swing.JMenuItem jmiCadastroAta;
     private javax.swing.JMenuItem jmiCadatroInstituicao;
-    private javax.swing.JMenuItem jmiSair;
-    private javax.swing.JMenu jmnArquivo;
     // End of variables declaration//GEN-END:variables
 }
