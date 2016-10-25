@@ -211,6 +211,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
             relatoriocontroller = new RelatorioController();
         }
         relatorio.setAta(txtAta.getText());
+        relatorio.setTitulo(txtTitulo.getText());
         relatorio.setAlunoid(Integer.parseInt(txtAluno.getText()));
         if (relatoriocontroller.insereRelatorio(relatorio)) {
             limpacampo();

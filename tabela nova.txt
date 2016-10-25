@@ -18,7 +18,7 @@ alunoid SERIAL PRIMARY KEY NOT NULL,
 instituicaoid integer not null,
 idade INTEGER NOT NULL,
 rua VARCHAR(20) NOT NULL DEFAULT '',
-numero INTEGER NULL,
+numero INTEGER not NULL default 00,
 bairro VARCHAR(20) NOT NULL DEFAULT '',
 cidade VARCHAR(20) NOT NULL DEFAULT '',
 nome_responsavel VARCHAR(20) NOT NULL DEFAULT '',
@@ -31,6 +31,7 @@ constraint fk_alunos_instituicao foreign key (instituicaoid) references institui
 create table Relatorio(
 relatorioid SERIAL primary key not null,
 alunoid SERIAL not null,
+titulo varchar(50) not null default '',
 ata text not null default '',
 CONSTRAINT FK_Alunos_Ata FOREIGN KEY (alunoID) REFERENCES alunos (alunoID)
 );

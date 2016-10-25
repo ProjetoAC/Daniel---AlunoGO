@@ -57,8 +57,8 @@ public class RelatorioDao {
             sql = "INSERT INTO relatorio(relatorioid, alunoid, titulo, ata) "
                     + "VALUES (" + relatorio.getRelatorioid()
                     + ", " + relatorio.getAlunoid()
-                    + ", " + relatorio.getTitulo()
-                    + ", '" + relatorio.getAta()
+                    + ", '" + relatorio.getTitulo()
+                    + "', '" + relatorio.getAta()
                     + "')";
             st.execute(sql);
             return true;
