@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  * @author Daniel
  */
 public class RelatorioDao {
+
     Statement st;
 
     public RelatorioDao() {
@@ -21,15 +22,17 @@ public class RelatorioDao {
             System.out.println("Erro ao pegar conexao" + ex);
         }
     }
+
     public Relatorio getRelatorioByID(int id) {
         ResultSet rs;
         Relatorio relatorio;
         try {
-            rs = st.executeQuery("SELECT RELATORIOID, ALUNOID, ATA" 
+            rs = st.executeQuery("SELECT RELATORIOID, ALUNOID, TITULO, ATA"
                     + "FROM RELATORIO WHERE RELATORIOID = " + id);
             while (rs.next()) {
                 relatorio = new Relatorio();
                 relatorio.setRelatorioid(rs.getInt("RELATORIOID"));
+                relatorio.setAta(rs.getString("TITULO"));
                 relatorio.setAta(rs.getString("ATA"));
                 return relatorio;
             }
@@ -38,6 +41,7 @@ public class RelatorioDao {
         }
         return null;
     }
+
     public boolean insereRelatorio(Relatorio relatorio) {
         String sql = "";
         ResultSet rs;
@@ -50,9 +54,10 @@ public class RelatorioDao {
                 id = rs.getInt("RELATORIOID");
             }
             relatorio.setRelatorioid(id);
-            sql = "INSERT INTO relatorio(relatorioid, alunoid, ata) "
+            sql = "INSERT INTO relatorio(relatorioid, alunoid, titulo, ata) "
                     + "VALUES (" + relatorio.getRelatorioid()
-                    +", " + relatorio.getAlunoid()
+                    + ", " + relatorio.getAlunoid()
+                    + ", " + relatorio.getTitulo()
                     + ", '" + relatorio.getAta()
                     + "')";
             st.execute(sql);
@@ -63,9 +68,11 @@ public class RelatorioDao {
         }
         return false;
     }
+
     public boolean updateRelatorio(Relatorio relatorio) {
         String sql = "UPDATE alunos SET "
                 + "relatorioid=" + relatorio.getRelatorioid() + ", "
+                + "titulo='" + relatorio.getTitulo() + "', "
                 + "ata='" + relatorio.getAta() + "', "
                 + "WHERE instituicaoid=" + relatorio.getRelatorioid() + ";";
         try {
@@ -77,16 +84,18 @@ public class RelatorioDao {
         }
         return false;
     }
-    public ArrayList<Relatorio> getRelatorios() {
+
+    public ArrayList<Relatorio> getRelatorio(String text) {
         ResultSet rs;
         Relatorio relatorio;
-        ArrayList<Relatorio> lista = new ArrayList<>();
+        ArrayList<Relatorio> lista = new ArrayList<Relatorio>();
         try {
-            rs = st.executeQuery("SELECT RELATORIOID, ATA"
-                    + " FROM INSTITUICAO");
+            rs = st.executeQuery("SELECT RELATORIOID, TITULO, ATA"
+                    + " FROM RELATORIO WHERE LOWER(TITULO) LIKE LOWER ('%" + text + "%')");
             while (rs.next()) {
                 relatorio = new Relatorio();
                 relatorio.setRelatorioid(rs.getInt("RELATORIOID"));
+                relatorio.setAta(rs.getString("TITULO"));
                 relatorio.setAta(rs.getString("ATA"));
                 lista.add(relatorio);
             }
@@ -96,6 +105,7 @@ public class RelatorioDao {
         }
         return lista;
     }
+
     public boolean deleteRelatorio(int id) {
         String sql = "DELETE FROM RELATORIO WHERE RELATORIOID = " + id;
         try {
@@ -106,5 +116,17 @@ public class RelatorioDao {
             JOptionPane.showMessageDialog(null, "Erro:" + ex);
         }
         return false;
+    }
+
+    public ResultSet getRelatorioByIDRs(int id) {
+        ResultSet rs = null;
+        Relatorio relatorio;
+        try {
+            rs = st.executeQuery("SELECT RELATORIOID, ALUNOID, ATA"
+                    + "FROM RELATORIO WHERE RELATORIOID = " + id);
+            return rs;
+        } catch (Exception ex) {
+            return rs;
+        }
     }
 }

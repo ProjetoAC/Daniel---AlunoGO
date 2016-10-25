@@ -18,7 +18,7 @@ import model.Aluno;
  */
 public class PesquisaAluno extends javax.swing.JDialog {
 
-   DefaultTableModel modelo;
+    DefaultTableModel modelo;
     AlunoController alunoController;
     ArrayList<Aluno> listaAluno;
     Aluno aluno;
@@ -185,7 +185,6 @@ public class PesquisaAluno extends javax.swing.JDialog {
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 private void setModelo() {
-
         modelo = new DefaultTableModel();
         modelo.addColumn("ID Aluno");
         modelo.addColumn("Nome");
@@ -215,14 +214,15 @@ private void setModelo() {
         int linha = tblPesquisa.getSelectedRow();
         int id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
         for (Aluno in : listaAluno) {
-            if (in.getAlunoid()== id) {
+            if (in.getAlunoid() == id) {
                 aluno = in;
                 break;
             }
         }
         this.dispose();
     }
-        public void getIdSelecionado(int id) {
+
+    public void getIdSelecionado(int id) {
 
         if (id == 0) {
             int linha = tblPesquisa.getSelectedRow();
@@ -239,5 +239,14 @@ private void setModelo() {
 
     public Aluno getAlunoSelecionado() {
         return aluno;
+    }
+
+    public int pegaidSelecionado() {
+        int linha = tblPesquisa.getSelectedRow();
+        return Integer.parseInt(modelo.getValueAt(linha, 0).toString());
+    }
+    public void deletaAluno(){
+        int numero = pegaidSelecionado();
+        alunoController.deleteAluno(numero);
     }
 }

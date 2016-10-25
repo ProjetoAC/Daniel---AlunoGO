@@ -1,6 +1,7 @@
 package controller;
 
 import dao.RelatorioDao;
+import java.sql.ResultSet;
 import model.Relatorio;
 import java.util.ArrayList;
 
@@ -26,11 +27,15 @@ public class RelatorioController {
         }
     }
 
-    public ArrayList<Relatorio> getRelatorio() {
-        return relatorioDao.getRelatorios();
+    public ArrayList<Relatorio> getRelatorio(String text) {
+        return relatorioDao.getRelatorio(text);
     }
 
     public boolean deleteRelatorio(int id) {
         return relatorioDao.deleteRelatorio(id);
+    }
+    
+    public ResultSet getRelatorioByIDRs(int id){
+        return relatorioDao.getRelatorioByIDRs(id);
     }
 }

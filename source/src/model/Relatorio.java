@@ -7,6 +7,16 @@ package model;
 public class Relatorio {
     private int Relatorioid;
     private int alunoid;
+    private String Ata;
+    private String Titulo;
+
+    public String getTitulo() {
+        return Titulo;
+    }
+
+    public void setTitulo(String Titulo) {
+        this.Titulo = Titulo;
+    }
 
     public int getAlunoid() {
         return alunoid;
@@ -15,7 +25,7 @@ public class Relatorio {
     public void setAlunoid(int alunoid) {
         this.alunoid = alunoid;
     }
-    private String Ata;
+
 
     public int getRelatorioid() {
         return Relatorioid;
