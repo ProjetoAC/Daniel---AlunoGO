@@ -33,6 +33,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     BufferedImage imagem;
     Imagem imagen;
     Aluno aluno;
+    ImagemController imagemController;
     AlunoController alunocontroller;
     Relatorio relatorio;
     RelatorioController relatoriocontroller;
@@ -552,6 +553,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Excluir_aluno();
+        //Excluir_imagem();
         limpaCampos();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -622,7 +624,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             txtCidade.grabFocus();
             return;
         } else if (txtIdade.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo Nascimento Invalido");
+            JOptionPane.showMessageDialog(null, "Campo Idade Invalido");
             txtIdade.grabFocus();
             return;
         } else if (txtNome_Responsavel.getText().equals("")) {
@@ -682,10 +684,6 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         txtInstituicao.setText("");
         lblInstituicao.setText("Nome");
         lbimagem.setIcon(null);
-    }
-
-    public void limpacampo() {
-        relatorio = null;
     }
 
     private void busca_Foto(int id) {
@@ -759,10 +757,16 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     }
 
     private void Excluir_aluno() {
-        if (alunocontroller == null) {
+       if (alunocontroller == null) {
             alunocontroller = new AlunoController();
         }
 
         alunocontroller.deleteAluno(aluno.getAlunoid());
+    }
+    private void Excluir_imagem(){
+       /* if (imagemController == null) {
+            imagemController = new ImagemController();
+        }*/
+      imagemController.deletaImagem(imagen.getImagemid());
     }
 }

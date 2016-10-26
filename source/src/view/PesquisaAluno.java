@@ -36,6 +36,11 @@ public class PesquisaAluno extends javax.swing.JDialog {
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
         listaAluno();
     }
+        public PesquisaAluno(int id) {
+        alunoController = new AlunoController();
+        listaAluno();
+        getIdSelecionado(id);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

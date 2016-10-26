@@ -17,9 +17,9 @@ public class Conexao {
         if (conexao == null) {
            try{
             conexao = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5435/AlunoGO", 
+                    "jdbc:postgresql://127.0.0.1:5432/AlunoGO", 
                     "postgres", 
-                    "123456");
+                    "postgres");
            }catch(SQLException ex){
                System.out.println("Erro Conexao Banco"+ex);
            }

@@ -4,13 +4,16 @@ import model.Imagem;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Senai
  */
+
 public class ImagemDAO {
+    Statement st;
 
     public Boolean inserir(Imagem imagem) throws SQLException {
         Boolean retorno = false;
@@ -49,5 +52,16 @@ public class ImagemDAO {
         }
 
         return retorno;
+    }
+        public boolean deleteImagem(int id) {
+        String sql = "DELETE FROM Imagem WHERE ID = " + id;
+        try {
+            st.execute(sql);
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Erro Delete: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro:" + ex);
+        }
+        return false;
     }
 }

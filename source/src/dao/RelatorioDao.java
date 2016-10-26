@@ -32,7 +32,7 @@ public class RelatorioDao {
             while (rs.next()) {
                 relatorio = new Relatorio();
                 relatorio.setRelatorioid(rs.getInt("RELATORIOID"));
-                relatorio.setAta(rs.getString("TITULO"));
+                relatorio.setTitulo(rs.getString("TITULO"));
                 relatorio.setAta(rs.getString("ATA"));
                 return relatorio;
             }
@@ -95,7 +95,7 @@ public class RelatorioDao {
             while (rs.next()) {
                 relatorio = new Relatorio();
                 relatorio.setRelatorioid(rs.getInt("RELATORIOID"));
-                relatorio.setAta(rs.getString("TITULO"));
+                relatorio.setTitulo(rs.getString("TITULO"));
                 relatorio.setAta(rs.getString("ATA"));
                 lista.add(relatorio);
             }

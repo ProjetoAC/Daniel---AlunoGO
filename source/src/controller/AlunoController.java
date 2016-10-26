@@ -34,7 +34,7 @@ public class AlunoController {
         return alunoDao.deleteAluno(id);
     }
     public boolean atualizaAluno(Aluno aluno){
-        if (aluno.getAlunoid() != 0) {
+        if (aluno.getAlunoid() > 0) {
             return alunoDao.updateAluno(aluno);
         }
         return true;

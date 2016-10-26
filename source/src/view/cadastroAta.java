@@ -52,6 +52,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jblPesqusa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximumSize(null);
@@ -85,6 +86,13 @@ public class cadastroAta extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Pesquisar:");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/1477189627_trash-can-delete.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -110,6 +118,8 @@ public class cadastroAta extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -133,16 +143,18 @@ public class cadastroAta extends javax.swing.JInternalFrame {
                                 .addContainerGap()
                                 .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lblAluno)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel2)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAluno)
+                                    .addComponent(jButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -186,10 +198,16 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         pesquisaRelatorio();
     }//GEN-LAST:event_jblPesqusaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       Excluir_Ata();
+       limpacampo();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGravar_Ata;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
@@ -222,6 +240,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     public void limpacampo() {
         relatorio = null;
         txtAta.setText("");
+        txtTitulo.setText("");
     }
 
     private void setAluno(Aluno aluno) {
@@ -235,16 +254,34 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         Aluno aluno = pesquisaAluno.getAlunoSelecionado();
         setAluno(aluno);
     }
+        private void pesquisaAluno(int id) {
+        PesquisaAluno pesquisaAluno;
+        if (id == 0) {
+            pesquisaAluno = new PesquisaAluno(null, closable);
+            pesquisaAluno.setVisible(true);
+        } else {
+            pesquisaAluno = new PesquisaAluno(id);
+        }
+        setAluno(pesquisaAluno.getAlunoSelecionado());
+    }
 
     private void setRelatorio(Relatorio relatorio) {
         txtTitulo.setText(relatorio.getTitulo());
         txtAta.setText(relatorio.getAta());
+        pesquisaAluno(relatorio.getAlunoid());
     }
 
     private void pesquisaRelatorio() {
-        PesquisaAta pesquisaAta = new PesquisaAta(null, true);
+        view.PesquisaAta pesquisaAta = new PesquisaAta(null, true);
         pesquisaAta.setVisible(true);
         Relatorio relatorio = pesquisaAta.getRelatorioSelecionado();
         setRelatorio(relatorio);
+    }
+        private void Excluir_Ata() {
+       if (relatoriocontroller == null) {
+            relatoriocontroller = new RelatorioController();
+        }
+
+        relatoriocontroller.deleteRelatorio(relatorio.getRelatorioid());
     }
 }

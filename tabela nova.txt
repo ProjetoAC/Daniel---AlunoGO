@@ -30,8 +30,13 @@ constraint fk_alunos_instituicao foreign key (instituicaoid) references institui
 );
 create table Relatorio(
 relatorioid SERIAL primary key not null,
-alunoid SERIAL not null,
+alunoid integer not null,
 titulo varchar(50) not null default '',
 ata text not null default '',
 CONSTRAINT FK_Alunos_Ata FOREIGN KEY (alunoID) REFERENCES alunos (alunoID)
 );
+DELETE FROM some_child_table WHERE some_fk_field IN (SELECT some_id FROM some_Table);
+drop table Relatorio
+DELETE FROM ALUNOS CASCATE WHERE ALUNOID = 1
+delete from ALUNOS cascate WHERE ALUNOID = 1
+DELETE FROM RELATORIO WHERE RELATORIOID = 1
