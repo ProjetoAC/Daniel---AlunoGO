@@ -112,8 +112,4 @@ public class ImagemController {
     public Imagem buscaImagen(int id) throws SQLException {
         return new ImagemDAO().buscar(id);
     }
-
-    public boolean deletaImagem(int id) {
-        return new ImagemDAO().deleteImagem(id);
-    }
 }

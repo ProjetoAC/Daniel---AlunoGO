@@ -18,7 +18,6 @@ public class AlunoController {
     }
 
     public boolean insereAluno(Aluno aluno) {
-
         if (aluno.getAlunoid() != 0) {
             return alunoDao.updateAluno(aluno);
         } else {
@@ -32,11 +31,5 @@ public class AlunoController {
 
     public boolean deleteAluno(int id) {
         return alunoDao.deleteAluno(id);
-    }
-    public boolean atualizaAluno(Aluno aluno){
-        if (aluno.getAlunoid() > 0) {
-            return alunoDao.updateAluno(aluno);
-        }
-        return true;
     }
 }

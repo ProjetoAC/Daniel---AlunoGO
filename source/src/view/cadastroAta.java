@@ -6,11 +6,19 @@
 package view;
 
 import controller.RelatorioController;
+import controller.relatorioAtaController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import model.Aluno;
 import model.Relatorio;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -22,7 +30,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
      * Creates new form cadastroAta
      */
     Relatorio relatorio;
-
+    relatorioAtaController rac;
     RelatorioController relatoriocontroller;
 
     public cadastroAta() {
@@ -52,6 +60,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jblPesqusa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        Imprimir = new javax.swing.JButton();
 
         setClosable(true);
         setMaximumSize(null);
@@ -85,6 +94,13 @@ public class cadastroAta extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Pesquisar");
 
+        Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/1479534805_vector_66_15.png"))); // NOI18N
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -95,11 +111,14 @@ public class cadastroAta extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(btnGravar_Ata)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnGravar_Ata)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(191, 191, 191)
@@ -124,12 +143,6 @@ public class cadastroAta extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(btnGravar_Ata))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
@@ -140,10 +153,22 @@ public class cadastroAta extends javax.swing.JInternalFrame {
                                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(29, 29, 29))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jblPesqusa, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(btnGravar_Ata))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(txtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jblPesqusa, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
@@ -174,15 +199,20 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGravar_AtaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pesquisaAluno();
+        pesquisaAluno(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jblPesqusaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jblPesqusaActionPerformed
         pesquisaRelatorio();
     }//GEN-LAST:event_jblPesqusaActionPerformed
 
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        relatorioAta();
+    }//GEN-LAST:event_ImprimirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Imprimir;
     private javax.swing.JButton btnGravar_Ata;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -195,7 +225,34 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane txtAta;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
- public void cadastrar_Ata() {
+
+    String caminhoRac = getCaminho() + "/src/report/Relatorio.jasper";
+
+    private String getCaminho() {
+        try {
+            return new File("").getAbsolutePath();
+        } catch (Exception ex) {
+            JOptionPane.showConfirmDialog(null, "Erro ao carregar caminho do relatório" + ex);
+        }
+        return "";
+    }
+    
+        public void relatorioAta() {
+        if (rac == null) {
+            rac = new relatorioAtaController();
+        }
+        try {
+            JRResultSetDataSource relResul = new JRResultSetDataSource(rac.relatorioAta());
+            JasperPrint jpPrint = JasperFillManager.fillReport(caminhoRac, new HashMap(), relResul);
+            JasperViewer jv = new JasperViewer(jpPrint, false);
+            jv.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao chamar o relatório " + ex);
+        }
+    }
+
+    public void cadastrar_Ata() {
         if (txtAta.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo Relatorio Invalido");
             txtAta.grabFocus();
@@ -225,13 +282,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         lblAluno.setText(aluno.getNome_completo());
     }
 
-    private void pesquisaAluno() {
-        view.PesquisaAluno pesquisaAluno = new PesquisaAluno(null, true);
-        pesquisaAluno.setVisible(true);
-        Aluno aluno = pesquisaAluno.getAlunoSelecionado();
-        setAluno(aluno);
-    }
-        private void pesquisaAluno(int id) {
+    private void pesquisaAluno(int id) {
         PesquisaAluno pesquisaAluno;
         if (id == 0) {
             pesquisaAluno = new PesquisaAluno(null, closable);
@@ -245,13 +296,15 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     private void setRelatorio(Relatorio relatorio) {
         txtTitulo.setText(relatorio.getTitulo());
         txtAta.setText(relatorio.getAta());
-        pesquisaAluno(relatorio.getAlunoid());
+
     }
 
     private void pesquisaRelatorio() {
         view.PesquisaAta pesquisaAta = new PesquisaAta(null, true);
         pesquisaAta.setVisible(true);
-        Relatorio relatorio = pesquisaAta.getRelatorioSelecionado();
+        relatorio = pesquisaAta.getRelatorioSelecionado();
         setRelatorio(relatorio);
+        pesquisaAluno(relatorio.getAlunoid());
     }
+
 }

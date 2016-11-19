@@ -11,32 +11,34 @@ import javax.swing.JOptionPane;
  *
  * @author Senai
  */
-
 public class ImagemDAO {
+
     Statement st;
+    PreparedStatement prepst;
+
+    static String INSERT = "INSERT INTO imagem(id, binario) "
+            + "VALUES ((SELECT COALESCE(max(id)+1,1) FROM imagem),?,?);";
+    static String SELECTALL = "SELECT id, binario"
+            + " FROM imagem where id=?";
 
     public Boolean inserir(Imagem imagem) throws SQLException {
-        Boolean retorno = false;
-        String sql = "INSERT INTO imagem (id, binario) values (?,?)";
-
-        PreparedStatement pst = Conexao.getPreparedStatement(sql);
         try {
+            PreparedStatement pst = Conexao.getConexao().prepareStatement(INSERT);
             pst.setInt(1, imagem.getImagemid());
             pst.setBytes(2, imagem.getImagem());
             pst.executeUpdate();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "Problema ao inserir imagem: " + ex);
         }
 
-        return retorno;
+        return false;
     }
 
     public Imagem buscar(Integer id) throws SQLException {
         Imagem retorno = null;
-        String sql = "SELECT id ,binario from imagem where id=?";
-        PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
+            PreparedStatement pst = Conexao.getConexao().prepareStatement(SELECTALL);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
@@ -52,16 +54,5 @@ public class ImagemDAO {
         }
 
         return retorno;
-    }
-        public boolean deleteImagem(int id) {
-        String sql = "DELETE FROM Imagem WHERE ID = " + id;
-        try {
-            st.execute(sql);
-            return true;
-        } catch (SQLException ex) {
-            System.out.println("Erro Delete: " + ex);
-            JOptionPane.showMessageDialog(null, "Erro:" + ex);
-        }
-        return false;
     }
 }
