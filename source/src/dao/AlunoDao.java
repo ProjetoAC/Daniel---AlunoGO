@@ -29,7 +29,7 @@ public class AlunoDao {
         try {
             rs = st.executeQuery("SELECT ALUNOID, NOME_COMPLETO, IDADE, RUA, NUMERO,"
                     + " BAIRRO, CIDADE, NOME_RESPONSAVEL, TELEFONE_RESPONSAVEL,"
-                    + " PARENTESCO_RESPONSAVEL FROM ALUNOS WHERE ALUNOID = " + id);
+                    + " PARENTESCO_RESPONSAVEL, ATIVO FROM ALUNOS WHERE ALUNOID = " + id);
             while (rs.next()) {
                 aluno = new Aluno();
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
@@ -42,6 +42,7 @@ public class AlunoDao {
                 aluno.setNome_responsavel(rs.getString("NOME_RESPONSAVEL"));
                 aluno.setTelefone_responsavel(rs.getString("TELEFONE_RESPONSAVEL"));
                 aluno.setParentesco_responsavel(rs.getString("PARENTESCO_RESPONSAVEL"));
+                aluno.setAtivo(rs.getString("ATIVO"));
                 return aluno;
             }
         } catch (SQLException ex) {
@@ -64,7 +65,7 @@ public class AlunoDao {
             aluno.setAlunoid(id);
             sql = "INSERT INTO alunos( alunoid, instituicaoid, idade, rua, numero, "
                     + "bairro, cidade, nome_responsavel, telefone_responsavel, parentesco_responsavel, nome_completo,"
-                    + " complemento)"
+                    + " complemento, ativo)"
                     + "VALUES (" + aluno.getAlunoid()
                     + ", " + aluno.getInstituicaoid()
                     + ", " + aluno.getIdade()
@@ -77,7 +78,8 @@ public class AlunoDao {
                     + "', '" + aluno.getParentesco_responsavel()
                     + "', '" + aluno.getNome_completo()
                     + "', '" + aluno.getComplemento()
-                    + "')";
+                    + "', '" + aluno.getAtivo()
+                    + "');";
             st.execute(sql);
             return true;
         } catch (SQLException ex) {
@@ -95,11 +97,12 @@ public class AlunoDao {
                 + "idade=" + aluno.getIdade() + ", "
                 + "rua='" + aluno.getRua() + "', "
                 + "numero=" + aluno.getNumero() + ", "
-                + "bairo='" + aluno.getBairro() + "', "
+                + "bairro='" + aluno.getBairro() + "', "
                 + "cidade='" + aluno.getCidade() + "', "
                 + "nome_responsavel='" + aluno.getNome_responsavel() + "', "
                 + "telefone_responsavel='" + aluno.getTelefone_responsavel() + "', "
-                + "parentescto_responsavel='" + aluno.getParentesco_responsavel() + "',"
+                + "parentesco_responsavel='" + aluno.getParentesco_responsavel() + "', "
+                + "ativo='" + aluno.getAtivo() + "' "
                 + "WHERE alunoid=" + aluno.getAlunoid() + ";";
         try {
             st.executeUpdate(sql);
@@ -118,7 +121,7 @@ public class AlunoDao {
         try {
             rs = st.executeQuery("SELECT ALUNOID, NOME_COMPLETO, IDADE,"
                     + " RUA, NUMERO, BAIRRO, CIDADE, NOME_RESPONSAVEL,"
-                    + " TELEFONE_RESPONSAVEL, PARENTESCO_RESPONSAVEL,INSTITUICAOID, COMPLEMENTO"
+                    + " TELEFONE_RESPONSAVEL, PARENTESCO_RESPONSAVEL,INSTITUICAOID, COMPLEMENTO, ATIVO"
                     + " FROM ALUNOS WHERE LOWER(NOME_COMPLETO) LIKE LOWER('%" + texto + "%')");
             while (rs.next()) {
                 aluno = new Aluno();
@@ -134,6 +137,7 @@ public class AlunoDao {
                 aluno.setParentesco_responsavel(rs.getString("PARENTESCO_RESPONSAVEL"));
                 aluno.setInstituicaoid(rs.getInt("INSTITUICAOID"));
                 aluno.setComplemento(rs.getString("COMPLEMENTO"));
+                aluno.setAtivo(rs.getString("ATIVO"));
                 lista.add(aluno);
             }
         } catch (SQLException ex) {
@@ -141,17 +145,5 @@ public class AlunoDao {
             JOptionPane.showMessageDialog(null, "Erro:" + ex);
         }
         return lista;
-    }
-
-    public boolean deleteAluno(int id) {
-        String sql = "DELETE FROM ALUNOS WHERE ALUNOID = " + id;
-        try {
-            st.execute(sql);
-            return true;
-        } catch (SQLException ex) {
-            System.out.println("Erro Delete: " + ex);
-            JOptionPane.showMessageDialog(null, "Erro:" + ex);
-        }
-        return false;
     }
 }

@@ -193,14 +193,16 @@ private void setModelo() {
         modelo = new DefaultTableModel();
         modelo.addColumn("ID Aluno");
         modelo.addColumn("Nome");
+        modelo.addColumn("Ativo");
         tblPesquisa.setModel(modelo);
 
     }
 
     private void insereTabela(Aluno aluno) {
-        Object[] linha = new Object[2];
+        Object[] linha = new Object[3];
         linha[0] = aluno.getAlunoid();
         linha[1] = aluno.getNome_completo();
+        linha[2] = aluno.getAtivo();
         modelo.addRow(linha);
     }
 
@@ -249,9 +251,5 @@ private void setModelo() {
     public int pegaidSelecionado() {
         int linha = tblPesquisa.getSelectedRow();
         return Integer.parseInt(modelo.getValueAt(linha, 0).toString());
-    }
-    public void deletaAluno(){
-        int numero = pegaidSelecionado();
-        alunoController.deleteAluno(numero);
     }
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -14,6 +15,9 @@ import javax.swing.JOptionPane;
 public class RelatorioDao {
 
     Statement st;
+    ResultSet rs;
+
+    String SELECT = "select * from relatorio where alunoid =";
 
     public RelatorioDao() {
         try {
@@ -118,15 +122,13 @@ public class RelatorioDao {
         return false;
     }
 
-    public ResultSet getRelatorioByIDRs(int id) {
-        ResultSet rs = null;
-        Relatorio relatorio;
+    public ResultSet RelatorioAta(int id) {
         try {
-            rs = st.executeQuery("SELECT RELATORIOID, ALUNOID, ATA"
-                    + "FROM RELATORIO WHERE RELATORIOID = " + id);
-            return rs;
-        } catch (Exception ex) {
-            return rs;
+            PreparedStatement preparedStatement = Conexao.getConexao().prepareStatement(SELECT + id);
+            rs = preparedStatement.executeQuery();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados no BD: " + ex);
         }
+        return rs;
     }
 }

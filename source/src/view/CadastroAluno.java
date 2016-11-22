@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.AlunoController;
@@ -98,8 +93,9 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         btnPesquisa_Aluno = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         Atualiza = new javax.swing.JButton();
+        txtAtivo = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
 
         setClosable(true);
         setResizable(true);
@@ -243,14 +239,14 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             }
         });
 
-        jToggleButton1.setText("Matriculado");
-
         Atualiza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/1477203062_Update.png"))); // NOI18N
         Atualiza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtualizaActionPerformed(evt);
             }
         });
+
+        jLabel16.setText("Aluno Ativo?");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -286,11 +282,13 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPesquisa_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jToggleButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnImagem)
                     .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,25 +343,23 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnImagem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnImagem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnPesquisa_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jToggleButton1)
-                                .addGap(40, 40, 40)))
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel16)
+                                        .addComponent(txtAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnPesquisa_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -438,7 +434,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,7 +549,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void AtualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizaActionPerformed
-
+        atualizaAluno();
+        limpaCampos();
     }//GEN-LAST:event_AtualizaActionPerformed
 
 
@@ -572,6 +569,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -584,9 +582,9 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lbimagem;
     private javax.swing.JLabel lblInstituicao;
+    private javax.swing.JTextField txtAtivo;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComplemento;
@@ -637,6 +635,10 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Campo Complemento Invalido");
             txtComplemento.grabFocus();
             return;
+        } else if (txtAtivo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo Ativo Invalido");
+            txtAtivo.grabFocus();
+            return;
         }
 
         if ((aluno == null) || (alunocontroller == null)) {
@@ -644,6 +646,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             alunocontroller = new AlunoController();
         }
         aluno.setRua(txtRua.getText());
+        aluno.setAtivo(txtAtivo.getText());
         aluno.setInstituicaoid(Integer.parseInt(txtInstituicao.getText()));
         aluno.setNumero(Integer.parseInt(txtNumero.getText()));
         aluno.setBairro(txtBairro.getText());
@@ -674,6 +677,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         txtInstituicao.setText("");
         lblInstituicao.setText("Nome");
         lbimagem.setIcon(null);
+        txtAtivo.setText("");
     }
 
     private void busca_Foto(int id) {
@@ -713,6 +717,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     }
 
     private void setAluno(Aluno aluno) {
+        txtAtivo.setText(aluno.getAtivo());
         txtNome_completo.setText(aluno.getNome_completo());
         txtIdade.setText(aluno.getIdade() + "");
         txtRua.setText(aluno.getRua());
@@ -744,5 +749,14 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         setAluno(aluno);
         pesquisaInstituicao(aluno.getInstituicaoid());
         busca_Foto(aluno.getAlunoid());
+    }
+
+    public void atualizaAluno() {
+        view.PesquisaAluno pesquisaAluno = new PesquisaAluno(null, false);
+        aluno = pesquisaAluno.getAlunoSelecionado();
+        if ((aluno != null) || (alunocontroller != null)) {
+        }
+        if (alunocontroller.atalizaAluno(aluno)) {
+        }
     }
 }

@@ -17,7 +17,16 @@ public class Aluno {
     private String cidade;
     private String nome_responsavel;
     private String telefone_responsavel;
-    private String parentesco_responsavel;        
+    private String parentesco_responsavel; 
+    private String ativo;
+
+    public String getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
+    }
 
     public String getComplemento() {
         return complemento;

@@ -6,7 +6,6 @@
 package view;
 
 import controller.RelatorioController;
-import controller.relatorioAtaController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
@@ -30,7 +29,6 @@ public class cadastroAta extends javax.swing.JInternalFrame {
      * Creates new form cadastroAta
      */
     Relatorio relatorio;
-    relatorioAtaController rac;
     RelatorioController relatoriocontroller;
 
     public cadastroAta() {
@@ -196,6 +194,7 @@ public class cadastroAta extends javax.swing.JInternalFrame {
 
     private void btnGravar_AtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravar_AtaActionPerformed
         cadastrar_Ata();
+        limpacampo();
     }//GEN-LAST:event_btnGravar_AtaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -238,11 +237,12 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     }
     
         public void relatorioAta() {
-        if (rac == null) {
-            rac = new relatorioAtaController();
+        if (relatoriocontroller == null) {
+            relatoriocontroller = new RelatorioController();
         }
         try {
-            JRResultSetDataSource relResul = new JRResultSetDataSource(rac.relatorioAta());
+            JRResultSetDataSource relResul = new JRResultSetDataSource
+            (relatoriocontroller.relatorioAta(Integer.parseInt(txtAluno.getText())));
             JasperPrint jpPrint = JasperFillManager.fillReport(caminhoRac, new HashMap(), relResul);
             JasperViewer jv = new JasperViewer(jpPrint, false);
             jv.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE);
@@ -266,7 +266,6 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         relatorio.setTitulo(txtTitulo.getText());
         relatorio.setAlunoid(Integer.parseInt(txtAluno.getText()));
         if (relatoriocontroller.insereRelatorio(relatorio)) {
-            limpacampo();
             JOptionPane.showMessageDialog(null, "Relatorio Cadastrado com Sucesso");
         }
     }
@@ -275,6 +274,8 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         relatorio = null;
         txtAta.setText("");
         txtTitulo.setText("");
+        txtAluno.setText("");
+        lblAluno.setText("Nome Aluno");
     }
 
     private void setAluno(Aluno aluno) {

@@ -9,7 +9,8 @@ import java.util.ArrayList;
  * @author Daniel
  */
 public class AlunoController {
-        AlunoDao alunoDao;
+
+    AlunoDao alunoDao;
 
     public AlunoController() {
         if (alunoDao == null) {
@@ -29,7 +30,10 @@ public class AlunoController {
         return alunoDao.getAlunos(texto);
     }
 
-    public boolean deleteAluno(int id) {
-        return alunoDao.deleteAluno(id);
+    public boolean atalizaAluno(Aluno aluno) {
+        if (aluno.getAlunoid() != 0) {
+            return alunoDao.updateAluno(aluno);
+        }
+        return true;
     }
 }

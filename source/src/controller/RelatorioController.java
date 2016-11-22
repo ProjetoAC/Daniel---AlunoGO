@@ -34,8 +34,7 @@ public class RelatorioController {
     public boolean deleteRelatorio(int id) {
         return relatorioDao.deleteRelatorio(id);
     }
-    
-    public ResultSet getRelatorioByIDRs(int id){
-        return relatorioDao.getRelatorioByIDRs(id);
+        public ResultSet relatorioAta(int id) {
+        return relatorioDao.RelatorioAta(id);
     }
 }
