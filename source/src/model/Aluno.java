@@ -1,5 +1,4 @@
 package model;
-
 /**
  *
  * @author Daniel
@@ -8,17 +7,88 @@ package model;
 public class Aluno {
     private int alunoid;
     private int instituicaoid;
+    private String ativo;
     private String nome_completo;
+    private String encaminhado;
     private String complemento;
-    private int idade;
+    private String nis;
+    private String nascimento;
+    private String obs_aluno;
     private String rua;
     private int numero;
     private String bairro;
     private String cidade;
     private String nome_responsavel;
+    private String whats_responsavel;
     private String telefone_responsavel;
-    private String parentesco_responsavel; 
-    private String ativo;
+    private String parentesco_responsavel;
+    private String facebook_responsavel;
+    private String email_responsavel;
+    private String obs_responsavel;
+
+    public String getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
+    }
+
+    public String getEncaminhado() {
+        return encaminhado;
+    }
+
+    public void setEncaminhado(String encaminhado) {
+        this.encaminhado = encaminhado;
+    }
+
+    public String getNis() {
+        return nis;
+    }
+
+    public void setNis(String nis) {
+        this.nis = nis;
+    }
+
+    public String getObs_aluno() {
+        return obs_aluno;
+    }
+
+    public void setObs_aluno(String obs_aluno) {
+        this.obs_aluno = obs_aluno;
+    }
+
+    public String getWhats_responsavel() {
+        return whats_responsavel;
+    }
+
+    public void setWhats_responsavel(String whats_responsavel) {
+        this.whats_responsavel = whats_responsavel;
+    }
+
+    public String getFacebook_responsavel() {
+        return facebook_responsavel;
+    }
+
+    public void setFacebook_responsavel(String facebook_responsavel) {
+        this.facebook_responsavel = facebook_responsavel;
+    }
+
+    public String getEmail_responsavel() {
+        return email_responsavel;
+    }
+
+    public void setEmail_responsavel(String email_responsavel) {
+        this.email_responsavel = email_responsavel;
+    }
+
+    public String getObs_responsavel() {
+        return obs_responsavel;
+    }
+
+    public void setObs_responsavel(String obs_responsavel) {
+        this.obs_responsavel = obs_responsavel;
+    }
 
     public String getAtivo() {
         return ativo;
@@ -58,14 +128,6 @@ public class Aluno {
 
     public void setAlunoid(int alunoid) {
         this.alunoid = alunoid;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public String getRua() {

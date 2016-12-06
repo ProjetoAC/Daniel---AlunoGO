@@ -3,7 +3,6 @@ idlogin SERIAL primary key not null,
 login varchar(20) unique not null default '',
 senha varchar(20) not null default ''
 );
-
 create table Imagem(
 id SERIAL PRIMARY KEY not null,
 binario BYTEA
@@ -16,16 +15,24 @@ natureza_admnistrativa varchar(07) not null default ''
 create table alunos(
 alunoid SERIAL PRIMARY KEY NOT NULL,
 instituicaoid integer not null,
-idade INTEGER NOT NULL,
+ativo varchar(1) not null default '',
+nome_completo varchar(50) not null default '',
+nis INTEGER not null default 00,
+obs_aluno varchar(250) not null default '',
 rua VARCHAR(20) NOT NULL DEFAULT '',
 numero INTEGER not NULL default 00,
 bairro VARCHAR(20) NOT NULL DEFAULT '',
 cidade VARCHAR(20) NOT NULL DEFAULT '',
+complemento varchar(100) not null default '',
+encaminhado varchar(100) not null default '', 
 nome_responsavel VARCHAR(20) NOT NULL DEFAULT '',
 telefone_responsavel VARCHAR(20) NOT NULL DEFAULT '',
+whats_responsavel varchar(20) not null default '',
 parentesco_responsavel VARCHAR(20) NOT NULL DEFAULT '',
-nome_completo varchar(50) not null default '',
-complemento varchar(100) not null default '',
+facebook_responsavel varchar(40) not null default '',
+email_responsavel varchar(50) not null default '',
+obs_responsavel varchar(250) not null default '',
+nascimento varchar(10) not null default '',
 constraint fk_alunos_instituicao foreign key (instituicaoid) references instituicao (instituicaoid)
 );
 create table Relatorio(
