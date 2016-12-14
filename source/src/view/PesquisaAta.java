@@ -181,14 +181,16 @@ private void setModelo() {
         modelo = new DefaultTableModel();
         modelo.addColumn("ID Relatoio");
         modelo.addColumn("Título");
+        modelo.addColumn("Aluno");
         tblPesquisa.setModel(modelo);
 
     }
 
     private void insereTabela(Relatorio relatorio) {
-        Object[] linha = new Object[2];
+        Object[] linha = new Object[3];
         linha[0] = relatorio.getRelatorioid();
         linha[1] = relatorio.getTitulo();
+        linha[2] = relatorio.getAlunoid();
         modelo.addRow(linha);
     }
 
@@ -202,12 +204,11 @@ private void setModelo() {
         }
         listaRelatorio = lista;
     }
-
     private void getIdSelecionado() {
         int linha = tblPesquisa.getSelectedRow();
         int id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
         for (Relatorio in : listaRelatorio) {
-            if (in.getRelatorioid() == id) {
+            if (in.getAlunoid() == id) {
                 relatorio = in;
                 break;
             }
@@ -216,7 +217,6 @@ private void setModelo() {
     }
 
     public void getIdSelecionado(int id) {
-
         if (id == 0) {
             int linha = tblPesquisa.getSelectedRow();
             id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());

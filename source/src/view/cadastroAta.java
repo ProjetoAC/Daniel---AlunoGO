@@ -297,7 +297,6 @@ public class cadastroAta extends javax.swing.JInternalFrame {
     private void setRelatorio(Relatorio relatorio) {
         txtTitulo.setText(relatorio.getTitulo());
         txtAta.setText(relatorio.getAta());
-
     }
 
     private void pesquisaRelatorio() {
@@ -307,5 +306,4 @@ public class cadastroAta extends javax.swing.JInternalFrame {
         setRelatorio(relatorio);
         pesquisaAluno(relatorio.getAlunoid());
     }
-
 }

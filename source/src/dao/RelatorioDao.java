@@ -94,11 +94,12 @@ public class RelatorioDao {
         Relatorio relatorio;
         ArrayList<Relatorio> lista = new ArrayList<Relatorio>();
         try {
-            rs = st.executeQuery("SELECT RELATORIOID, TITULO, ATA"
+            rs = st.executeQuery("SELECT RELATORIOID, ALUNOID, TITULO, ATA"
                     + " FROM RELATORIO WHERE LOWER(TITULO) LIKE LOWER ('%" + text + "%')");
             while (rs.next()) {
                 relatorio = new Relatorio();
                 relatorio.setRelatorioid(rs.getInt("RELATORIOID"));
+                relatorio.setAlunoid(rs.getInt("ALUNOID"));
                 relatorio.setTitulo(rs.getString("TITULO"));
                 relatorio.setAta(rs.getString("ATA"));
                 lista.add(relatorio);
@@ -108,18 +109,6 @@ public class RelatorioDao {
             JOptionPane.showMessageDialog(null, "Erro:" + ex);
         }
         return lista;
-    }
-
-    public boolean deleteRelatorio(int id) {
-        String sql = "DELETE FROM RELATORIO WHERE RELATORIOID = " + id;
-        try {
-            st.execute(sql);
-            return true;
-        } catch (SQLException ex) {
-            System.out.println("Erro Delete: " + ex);
-            JOptionPane.showMessageDialog(null, "Erro:" + ex);
-        }
-        return false;
     }
 
     public ResultSet RelatorioAta(int id) {

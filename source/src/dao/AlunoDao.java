@@ -145,7 +145,7 @@ public class AlunoDao {
         Aluno aluno;
         ArrayList<Aluno> lista = new ArrayList<Aluno>();
         try {
-            rs = st.executeQuery("SELECT ALUNOID, ATIVO, NOME_COMPLETO, NIS, OBS_ALUNO,"
+            rs = st.executeQuery("SELECT ALUNOID, INSTITUICAOID, ATIVO, NOME_COMPLETO, NIS, OBS_ALUNO,"
                     + " RUA, NUMERO, BAIRRO, CIDADE, COMPLEMENTO, ENCAMINHADO,"
                     + " NOME_RESPONSAVEL, TELEFONE_RESPONSAVEL, WHATS_RESPONSAVEL, PARENTESCO_RESPONSAVEL,"
                     + " FACEBOOK_RESPONSAVEL, EMAIL_RESPONSAVEL, OBS_RESPONSAVEL,"
@@ -154,6 +154,7 @@ public class AlunoDao {
             while (rs.next()) {
                 aluno = new Aluno();
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
+                aluno.setInstituicaoid(rs.getInt("INSTITUICAOID"));
                 aluno.setAtivo(rs.getString("ATIVO"));
                 aluno.setNome_completo(rs.getString("NOME_COMPLETO"));
                 aluno.setNis(rs.getInt("NIS"));

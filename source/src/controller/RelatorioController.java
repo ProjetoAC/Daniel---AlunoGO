@@ -30,10 +30,6 @@ public class RelatorioController {
     public ArrayList<Relatorio> getRelatorio(String text) {
         return relatorioDao.getRelatorio(text);
     }
-
-    public boolean deleteRelatorio(int id) {
-        return relatorioDao.deleteRelatorio(id);
-    }
         public ResultSet relatorioAta(int id) {
         return relatorioDao.RelatorioAta(id);
     }

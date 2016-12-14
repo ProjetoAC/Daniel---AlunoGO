@@ -220,7 +220,6 @@ public class PesquisaInstituicao extends javax.swing.JDialog {
     }
 
     private void getIdSelecionado(int id) {
-
         if (id == 0) {
             int linha = tblPesquisa.getSelectedRow();
             id = Integer.parseInt(modelo.getValueAt(linha, 0).toString());
@@ -234,8 +233,7 @@ public class PesquisaInstituicao extends javax.swing.JDialog {
         this.dispose();
     }
 
-    public Instituicao getInstituicaoSelecioanda() {
+    public Instituicao getInstituicaoSelecionada() {
         return instituicao;
     }
-
 }

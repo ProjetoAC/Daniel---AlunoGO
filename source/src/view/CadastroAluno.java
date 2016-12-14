@@ -874,7 +874,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         } else {
             pesquisaInstituicao = new PesquisaInstituicao(id);
         }
-        setInstituicao(pesquisaInstituicao.getInstituicaoSelecioanda());
+        setInstituicao(pesquisaInstituicao.getInstituicaoSelecionada());
     }
 
     private void pesquisaAluno() {
