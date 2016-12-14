@@ -11,7 +11,7 @@ public class Aluno {
     private String nome_completo;
     private String encaminhado;
     private String complemento;
-    private String nis;
+    private int nis;
     private String nascimento;
     private String obs_aluno;
     private String rua;
@@ -42,11 +42,11 @@ public class Aluno {
         this.encaminhado = encaminhado;
     }
 
-    public String getNis() {
+    public int getNis() {
         return nis;
     }
 
-    public void setNis(String nis) {
+    public void setNis(int nis) {
         this.nis = nis;
     }
 

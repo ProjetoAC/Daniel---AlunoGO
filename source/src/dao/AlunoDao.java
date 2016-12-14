@@ -37,7 +37,7 @@ public class AlunoDao {
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
                 aluno.setAtivo(rs.getString("ATIVO"));
                 aluno.setNome_completo(rs.getString("NOME_COMPLETO"));
-                aluno.setNis(rs.getString("NIS"));
+                aluno.setNis(rs.getInt("NIS"));
                 aluno.setObs_aluno(rs.getString("OBS_ALUNO"));
                 aluno.setRua(rs.getString("RUA"));
                 aluno.setNumero(rs.getInt("NUMERO"));
@@ -89,6 +89,7 @@ public class AlunoDao {
                     + ", '" + aluno.getBairro()
                     + "', '" + aluno.getCidade()
                     + "', '" + aluno.getComplemento()
+                    + "', '" + aluno.getEncaminhado()
                     + "', '" + aluno.getNome_responsavel()
                     + "', '" + aluno.getTelefone_responsavel()
                     + "', '" + aluno.getWhats_responsavel()
@@ -102,8 +103,7 @@ public class AlunoDao {
             return true;
         } catch (SQLException ex) {
             System.out.println("Problema ao inserir aluno: " + ex);
-            aluno.setAlunoid(0);
-            JOptionPane.showMessageDialog(null, "Erro:" + ex);
+            JOptionPane.showMessageDialog(null, "Problema ao inserir aluno:" + ex);
         }
         return false;
     }
@@ -156,7 +156,7 @@ public class AlunoDao {
                 aluno.setAlunoid(rs.getInt("ALUNOID"));
                 aluno.setAtivo(rs.getString("ATIVO"));
                 aluno.setNome_completo(rs.getString("NOME_COMPLETO"));
-                aluno.setNis(rs.getString("NIS"));
+                aluno.setNis(rs.getInt("NIS"));
                 aluno.setObs_aluno(rs.getString("OBS_ALUNO"));
                 aluno.setRua(rs.getString("RUA"));
                 aluno.setNumero(rs.getInt("NUMERO"));

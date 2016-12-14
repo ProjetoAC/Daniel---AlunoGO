@@ -763,7 +763,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         aluno.setAtivo(txtAtivo.getText());
         aluno.setNome_completo(txtNome_completo.getText());
         aluno.setNascimento(txtIdade.getText());
-        aluno.setNis(txtNis.getText());
+        aluno.setNis(Integer.parseInt(txtNis.getText()));
         aluno.setObs_aluno(txtObsAluno.getText());
         aluno.setInstituicaoid(Integer.parseInt(txtInstituicao.getText()));
         aluno.setRua(txtRua.getText());
@@ -847,17 +847,23 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
 
     private void setAluno(Aluno aluno) {
         txtAtivo.setText(aluno.getAtivo());
-        txtNome_completo.setText(aluno.getNome_completo());
-        txtIdade.setText(aluno.getNascimento() + "");
         txtRua.setText(aluno.getRua());
         txtNumero.setText(aluno.getNumero() + "");
         txtBairro.setText(aluno.getBairro());
         txtCidade.setText(aluno.getCidade());
-        txtComplemento.setText(aluno.getComplemento());
+        txtNome_completo.setText(aluno.getNome_completo());
+        txtIdade.setText(aluno.getNascimento());
         txtNome_Responsavel.setText(aluno.getNome_responsavel());
         txtTelefone_Responsavel.setText(aluno.getTelefone_responsavel());
         txtParentesco_Responsavel.setText(aluno.getParentesco_responsavel());
-        txtInstituicao.setText(aluno.getInstituicaoid() + "");
+        txtComplemento.setText(aluno.getComplemento());
+        txtWhats.setText(aluno.getWhats_responsavel());
+        txtFacebook.setText(aluno.getFacebook_responsavel());
+        txtEmail.setText(aluno.getEmail_responsavel());
+        txtObsResponsavel.setText(aluno.getObs_responsavel());
+        txtObsAluno.setText(aluno.getObs_aluno());
+        txtNis.setText(aluno.getNis() + "");
+        txtEncaminhado.setText(aluno.getEncaminhado());
     }
 
     private void pesquisaInstituicao(int id) {
